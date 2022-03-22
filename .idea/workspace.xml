@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e21da4d0-075f-4bc5-99e4-8f90605acc89" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProyectoLisp/src/comun/Quote.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProyectoLisp/src/tests/QuoteTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/DriverProgram.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/comun/DriverProgram.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/Interprete.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/comun/Interprete.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/OperacionesAritmeticas.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/comun/OperacionesAritmeticas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/Stack.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/comun/Stack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/DriverProgram.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/DriverProgram.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/Common/OperacionesAritmeticas.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,5 +70,17 @@
   </component>
   <component name="TaskManager">
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
