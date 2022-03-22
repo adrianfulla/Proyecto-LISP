@@ -5,6 +5,8 @@ import java.util.Scanner;
 public class DriverProgram {
     public static void main (String[] args){
         Scanner s = new Scanner(System.in);
+        Interprete i = new Interprete();
+        SintaxScanner ss = new SintaxScanner();
         String programa;
         System.out.println("""
                 ██████╗░██████╗░░█████╗░██╗░░░██╗███████╗░█████╗░████████╗░█████╗░░░░░░░██╗░░░░░██╗░██████╗██████╗░
@@ -20,5 +22,7 @@ public class DriverProgram {
                 en Lisp. Solo asegurate de que la sintaxis y la estructura de tu codigo se encuentran bien, así que
                 sin más que agregar, puedes comenzar a programar: """);
         programa = s.nextLine();
+        ss.separarExpresion(programa);
     }
 }
+
