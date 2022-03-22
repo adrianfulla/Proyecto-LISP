@@ -1,5 +1,3 @@
-package Common;
-
 public class Interprete {
     public void traduccion(String programa){
         programa.replace(" ","");
