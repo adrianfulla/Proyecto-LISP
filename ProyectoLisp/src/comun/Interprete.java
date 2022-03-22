@@ -1,4 +1,4 @@
-package Common;
+package comun;
 
 public class Interprete {
     public void traduccion(String programa){

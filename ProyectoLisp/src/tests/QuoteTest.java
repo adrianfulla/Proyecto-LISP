@@ -1,5 +1,4 @@
-package Tests;
-import Common.Interprete;
+package tests;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,7 +6,7 @@ import java.util.HashMap;
 import static org.junit.jupiter.api.Assertions.*;
 
 class QuoteTest {
-    Common.Quote q = new Common.Quote();
+    comun.Quote q = new comun.Quote();
     @org.junit.jupiter.api.Test
 
     void print() {
