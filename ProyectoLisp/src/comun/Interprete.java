@@ -84,6 +84,18 @@ public class Interprete {
         return resultado;
     }
 
+    public IResultadoOperacion quote(String expresion){
+        Pattern pattern = Pattern.compile("[(]('|quote)([(].*[)])[)]", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(expresion);
+        String texto = "";
+        while (matcher.find()) {
+            texto = matcher.group(2);
+        }
+        OperacionesAritmeticas resultado = new OperacionesAritmeticas();
+        resultado.aniadirResultado(" quote ", "" + texto);
+        return resultado;
+    }
+
     public IResultadoOperacion Operate(String expresion){
         int operacion = SintaxScanner.getState(expresion);
 
@@ -96,6 +108,8 @@ public class Interprete {
                 return multiplicacion(expresion);
             case 4:
                 return division(expresion);
+            case 5:
+                return quote(expresion);
             default:
 
                 IResultadoOperacion resultadoError = new IResultadoOperacion() {

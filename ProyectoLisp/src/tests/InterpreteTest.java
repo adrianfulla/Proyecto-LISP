@@ -30,4 +30,9 @@ class InterpreteTest {
         Interprete t = new Interprete();
         assertEquals("El resultado de la operacion  division  es: 0.5" , t.division("(/ 2 2 2)").perzonalizarOperacion());
     }
+    @Test
+    void quote() {
+        Interprete t = new Interprete();
+        assertEquals("El resultado de la operacion  quote  es: ( hola)" , t.quote("(quote( hola))").perzonalizarOperacion());
+    }
 }
