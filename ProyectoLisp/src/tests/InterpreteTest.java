@@ -42,4 +42,9 @@ class InterpreteTest {
         assertEquals("Variable: b asignada con valor: 2" , t.setq("(setq a 1 b 2)").perzonalizarOperacion());
     }
 
+    @Test
+    void listTest() {
+        Interprete t = new Interprete();
+        assertEquals("El resultado de la operacion  list  es: ( a 1 b 2 )" , t.list("(list 'a '1 'b '2)").perzonalizarOperacion());
+    }
 }

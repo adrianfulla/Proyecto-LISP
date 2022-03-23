@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e21da4d0-075f-4bc5-99e4-8f90605acc89" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/comun/Interprete.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/comun/Interprete.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/comun/SintaxScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/comun/SintaxScanner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/tests/InterpreteTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/tests/InterpreteTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +61,7 @@
       <recent name="tests" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DriverProgram (1)">
+  <component name="RunManager" selected="JUnit.InterpreteTest.listTest">
     <configuration name="DriverProgram (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="comun.DriverProgram" />
       <module name="Proyecto-LISP" />
@@ -74,6 +71,22 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InterpreteTest.listTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Proyecto-LISP" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.InterpreteTest" />
+      <option name="METHOD_NAME" value="listTest" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -110,22 +123,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InterpreteTest.resta" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Proyecto-LISP" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tests" />
-      <option name="MAIN_CLASS_NAME" value="tests.InterpreteTest" />
-      <option name="METHOD_NAME" value="resta" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="InterpreteTest.setqTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Proyecto-LISP" />
       <extension name="coverage">
@@ -144,11 +141,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.InterpreteTest.listTest" />
         <item itemvalue="Application.DriverProgram (1)" />
         <item itemvalue="JUnit.InterpreteTest.setqTest" />
         <item itemvalue="JUnit.InterpreteTest.quote" />
         <item itemvalue="JUnit.InterpreteTest.multiplicacion" />
-        <item itemvalue="JUnit.InterpreteTest.resta" />
       </list>
     </recent_temporary>
   </component>
