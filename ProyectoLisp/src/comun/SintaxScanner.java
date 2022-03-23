@@ -18,15 +18,17 @@ public class SintaxScanner {
         }
     }
 
-    public static int getState(String expresion){
-        if (evaluate("^[(][ ]*[+][ ]+([a-z]+|[0-9]+)([ ]+([a-z]+|[0-9]+)[ ]*)*[)]$", expresion)){
+    public static int getState(String expresion) {
+        if (evaluate("^[(][ ]*[+][ ]+([a-z]+|[0-9]+)([ ]+([a-z]+|[0-9]+)[ ]*)*[)]$", expresion)) {
             return 1;
-        } else if (evaluate("^[(][ ]*[-][ ]+([a-z]+|[0-9]+)([ ]+([a-z]+|[0-9]+)[ ]*)*[)]$", expresion)){
+        } else if (evaluate("^[(][ ]*[-][ ]+([a-z]+|[0-9]+)([ ]+([a-z]+|[0-9]+)[ ]*)*[)]$", expresion)) {
             return 2;
-        } else if (evaluate("^[(][ ]*[*][ ]+([a-z]+|[0-9]+)([ ]+([a-z]+|[0-9]+)[ ]*)*[)]$", expresion)){
+        } else if (evaluate("^[(][ ]*[*][ ]+([a-z]+|[0-9]+)([ ]+([a-z]+|[0-9]+)[ ]*)*[)]$", expresion)) {
             return 3;
-        } else if (evaluate("^[(][ ]*[/][ ]+([a-z]+|[0-9]+)([ ]+([a-z]+|[0-9]+)[ ]*)*[)]$", expresion)){
+        } else if (evaluate("^[(][ ]*[/][ ]+([a-z]+|[0-9]+)([ ]+([a-z]+|[0-9]+)[ ]*)*[)]$", expresion)) {
             return 4;
+        } else if (evaluate("^[(]('|quote)([(].*[)])[)]$", expresion)) {
+            return 5;
         } else {
             return 0;
         }
