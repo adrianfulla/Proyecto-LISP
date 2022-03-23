@@ -5,17 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e21da4d0-075f-4bc5-99e4-8f90605acc89" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ProyectoLisp/src/comun/IResultadoOperacion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProyectoLisp/src/tests/InterpreteTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Proyecto-LISP.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Proyecto-LISP.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/comun/DriverProgram.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/comun/DriverProgram.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/comun/Interprete.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/comun/Interprete.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/comun/OperacionesAritmeticas.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/comun/OperacionesAritmeticas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/comun/Quote.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/comun/Quote.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/comun/SintaxScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/comun/SintaxScanner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/DriverProgram.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/DriverProgram.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Interprete$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Interprete$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Interprete.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Interprete.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/OperacionesAritmeticas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/OperacionesAritmeticas.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Quote.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Quote.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/SintaxScanner.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/SintaxScanner.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Stack.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Stack.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,13 +66,13 @@
       <recent name="tests" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.InterpreteTest.division">
-    <configuration name="DriverProgram" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="tests.QuoteTest" />
+  <component name="RunManager" selected="JUnit.InterpreteTest.quote">
+    <configuration name="DriverProgram (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="comun.DriverProgram" />
       <module name="Proyecto-LISP" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="tests.*" />
+          <option name="PATTERN" value="comun.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -114,6 +112,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="InterpreteTest.quote" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Proyecto-LISP" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.InterpreteTest" />
+      <option name="METHOD_NAME" value="quote" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="InterpreteTest.resta" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Proyecto-LISP" />
       <extension name="coverage">
@@ -130,29 +144,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InterpreteTest.suma" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Proyecto-LISP" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tests" />
-      <option name="MAIN_CLASS_NAME" value="tests.InterpreteTest" />
-      <option name="METHOD_NAME" value="suma" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.InterpreteTest.quote" />
+        <item itemvalue="Application.DriverProgram (1)" />
         <item itemvalue="JUnit.InterpreteTest.division" />
         <item itemvalue="JUnit.InterpreteTest.multiplicacion" />
         <item itemvalue="JUnit.InterpreteTest.resta" />
-        <item itemvalue="JUnit.InterpreteTest.suma" />
-        <item itemvalue="Application.DriverProgram" />
       </list>
     </recent_temporary>
   </component>
@@ -177,6 +175,5 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
