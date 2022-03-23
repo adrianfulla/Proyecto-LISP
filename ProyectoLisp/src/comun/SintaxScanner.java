@@ -27,8 +27,10 @@ public class SintaxScanner {
             return 3;
         } else if (evaluate("^[(][ ]*[/][ ]+([a-z]+|[0-9]+)([ ]+([a-z]+|[0-9]+)[ ]*)*[)]$", expresion)) {
             return 4;
-        } else if (evaluate("^[(]('|quote)([(].*[)])[)]$", expresion)) {
+        } else if (evaluate("^[(][ ]*('|quote)([(].*[)])[ ]*[)]$", expresion)) {
             return 5;
+        } else if (evaluate("^[(][ ]*setq([ ]+[a-z]+[ ]+[0-9])*+[ ]*[)]$", expresion)) {
+            return 6;
         } else {
             return 0;
         }
