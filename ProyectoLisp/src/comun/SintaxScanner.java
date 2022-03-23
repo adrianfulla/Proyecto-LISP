@@ -31,7 +31,9 @@ public class SintaxScanner {
             return 5;
         } else if (evaluate("^[(][ ]*setq([ ]+[a-z]+[ ]+[0-9])*+[ ]*[)]$", expresion)) {
             return 6;
-        } else {
+        } else if (evaluate("[(][ ]*(list|setq)[ ]*([a-z]|[0-9])?[ ]*((['][(]([a-z]+.?|[0-9]+.?)+([)].))+|(['][a-z].+|['][0-9].+)[)])", expresion)) {
+            return 7;
+        }else {
             return 0;
         }
     }

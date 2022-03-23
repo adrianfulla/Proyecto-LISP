@@ -149,6 +149,21 @@ public class Interprete {
 
     }
 
+    public IResultadoOperacion list(String expresion){
+        Pattern pattern = Pattern.compile("([']([a-z]+|[0-9]+)|[']([(]([a-z]|[a-z][ ]|[0-9]+|[0-9]+[ ])*[)]))", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(expresion);
+        String respuesta = "";
+        String[] util;
+
+        while (matcher.find()){
+            util = matcher.group().split("'");
+            respuesta = respuesta +" "+ util[1];
+        }
+        OperacionesAritmeticas resultado = new OperacionesAritmeticas();
+        resultado.aniadirResultado(" list ", "(" + respuesta + " )");
+        return resultado;
+    }
+
     public IResultadoOperacion Operate(String expresion){
         int operacion = SintaxScanner.getState(expresion);
 
@@ -165,6 +180,8 @@ public class Interprete {
                 return quote(expresion);
             case 6:
                 return setq(expresion);
+            case 7:
+                return list(expresion);
             default:
 
                 IResultadoOperacion resultadoError = new IResultadoOperacion() {
