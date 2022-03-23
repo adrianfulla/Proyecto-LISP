@@ -8,6 +8,7 @@ public class DriverProgram {
         Interprete i = new Interprete();
         SintaxScanner ss = new SintaxScanner();
         String programa;
+        boolean salir=false;
         System.out.println("""
                 ██████╗░██████╗░░█████╗░██╗░░░██╗███████╗░█████╗░████████╗░█████╗░░░░░░░██╗░░░░░██╗░██████╗██████╗░
                 ██╔══██╗██╔══██╗██╔══██╗╚██╗░██╔╝██╔════╝██╔══██╗╚══██╔══╝██╔══██╗░░░░░░██║░░░░░██║██╔════╝██╔══██╗
@@ -21,8 +22,16 @@ public class DriverProgram {
                 Para poder utilizar este interprete, solo deberas escribir tu código como si estuvieras codificando 
                 en Lisp. Solo asegurate de que la sintaxis y la estructura de tu codigo se encuentran bien, así que
                 sin más que agregar, puedes comenzar a programar: """);
+        System.out.println("Si deseas salir, ingresa el numero 1: ");
         programa = s.nextLine();
-        ss.separarExpresion(programa);
+        while (!salir){
+            if (programa.equals("1")){
+                salir = true;
+            } else{
+                System.out.println(i.Operate(programa).perzonalizarOperacion());
+                salir = true;
+            }
+        }
     }
 }
 
