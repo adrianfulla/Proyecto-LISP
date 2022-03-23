@@ -22,14 +22,17 @@ public class DriverProgram {
                 Para poder utilizar este interprete, solo deberas escribir tu código como si estuvieras codificando 
                 en Lisp. Solo asegurate de que la sintaxis y la estructura de tu codigo se encuentran bien, así que
                 sin más que agregar, puedes comenzar a programar: """);
-        System.out.println("Si deseas salir, ingresa el numero 1: ");
-        programa = s.nextLine();
         while (!salir){
+            System.out.println("");
+            System.out.println("Ingresa una nueva expresion: [NOTA - Si deseas salir, ingresa el numero 1]");
+            System.out.println("[EXPRESION]");
+            programa = s.nextLine();
             if (programa.equals("1")){
                 salir = true;
             } else{
+                System.out.println("");
+                System.out.println("[RESULTADO]");
                 System.out.println(i.Operate(programa).perzonalizarOperacion());
-                salir = true;
             }
         }
     }

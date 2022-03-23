@@ -8,31 +8,38 @@ import static org.junit.jupiter.api.Assertions.*;
 class InterpreteTest {
 
     @Test
-    void suma() {
+    void sumaTest() {
         Interprete t = new Interprete();
         assertEquals("El resultado de la operacion  suma  es: 3" , t.suma("(+ 1 1 1)").perzonalizarOperacion());
     }
 
     @Test
-    void resta() {
+    void restaTest() {
         Interprete t = new Interprete();
         assertEquals("El resultado de la operacion  resta  es: -1" , t.resta("(- 1 1 1)").perzonalizarOperacion());
     }
 
     @Test
-    void multiplicacion() {
+    void multiplicacionTest() {
         Interprete t = new Interprete();
         assertEquals("El resultado de la operacion  multiplicacion  es: 8" , t.multiplicacion("(* 2 2 2)").perzonalizarOperacion());
     }
 
     @Test
-    void division() {
+    void divisionTest() {
         Interprete t = new Interprete();
         assertEquals("El resultado de la operacion  division  es: 0.5" , t.division("(/ 2 2 2)").perzonalizarOperacion());
     }
     @Test
-    void quote() {
+    void quoteTest() {
         Interprete t = new Interprete();
         assertEquals("El resultado de la operacion  quote  es: ( hola)" , t.quote("(quote( hola))").perzonalizarOperacion());
     }
+
+    @Test
+    void setqTest() {
+        Interprete t = new Interprete();
+        assertEquals("Variable: b asignada con valor: 2" , t.setq("(setq a 1 b 2)").perzonalizarOperacion());
+    }
+
 }
