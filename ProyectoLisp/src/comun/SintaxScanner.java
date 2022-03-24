@@ -19,7 +19,9 @@ public class SintaxScanner {
     }
 
     public static int getState(String expresion) {
-        if (evaluate("^[(][ ]*[+][ ]+([a-z]+|[0-9]+)([ ]+([a-z]+|[0-9]+)[ ]*)*[)]$", expresion)) {
+        if(evaluate("[(]cond [(]([(].*[)])[)]", expresion)){
+            return 12;
+        }else if (evaluate("^[(][ ]*[+][ ]+([a-z]+|[0-9]+)([ ]+([a-z]+|[0-9]+)[ ]*)*[)]$", expresion)) {
             return 1;
         } else if (evaluate("^[(][ ]*[-][ ]+([a-z]+|[0-9]+)([ ]+([a-z]+|[0-9]+)[ ]*)*[)]$", expresion)) {
             return 2;
@@ -37,7 +39,7 @@ public class SintaxScanner {
             return 9;
         } else if (evaluate("^[(][ ]*[>][ ]+([a-z]+|[0-9]+)([ ]+([a-z]+|[0-9]+)[ ]*)*[)]$", expresion)) {
             return 10;
-        }else if (evaluate("^[(][ ]*atom[ ](['].|[0-9]+|['][(]*.*[)]*[)]*)[ ]*[)]$", expresion)){
+        } else if (evaluate("^[(][ ]*atom[ ](['].|[0-9]+|['][(]*.*[)]*[)]*)[ ]*[)]$", expresion)) {
             return 8;
         } else {
             return 0;
