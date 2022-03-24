@@ -173,6 +173,16 @@ public class Interprete {
                 this.value = result;
             }
 
+            @Override
+            public void aniadirResultado(String key, String result, boolean evaluacion) {
+
+            }
+
+            @Override
+            public boolean getEvaluacion() {
+                return false;
+            }
+
         };
 
         assigmentResult.aniadirResultado(varName, varValue.toString());
@@ -217,12 +227,17 @@ public class Interprete {
                 valor2 = Integer.parseInt(matcher.group().trim());
             }
         }
+        boolean evaluacion;
         if(valor1 < valor2){
             respuesta = "EL valor "+ valor1 + " es menor a el valor " + valor2;
-        }else {respuesta = "EL valor "+ valor2 + " es menor a el valor " + valor1;}
+            evaluacion = true;
+        }else {
+            respuesta = "EL valor "+ valor2 + " es menor a el valor " + valor1;
+            evaluacion = false;
+            }
 
         OperacionesAritmeticas resultado = new OperacionesAritmeticas();
-        resultado.aniadirResultado(" menor ", "" + respuesta);
+        resultado.aniadirResultado(" menor ", "" + respuesta, evaluacion);
         return resultado;
     }
 
@@ -242,12 +257,15 @@ public class Interprete {
                 valor2 = Integer.parseInt(matcher.group().trim());
             }
         }
+        boolean evaluacion;
         if(valor1 > valor2){
             respuesta = "EL valor "+ valor1 + " es mayor a el valor " + valor2;
-        }else {respuesta = "EL valor "+ valor2 + " es mayor a el valor " + valor1;}
+            evaluacion = true;
+        }else {respuesta = "EL valor "+ valor2 + " es mayor a el valor " + valor1;
+            evaluacion = false;}
 
         OperacionesAritmeticas resultado = new OperacionesAritmeticas();
-        resultado.aniadirResultado(" menor ", "" + respuesta);
+        resultado.aniadirResultado(" menor ", "" + respuesta, evaluacion);
         return resultado;
     }
 
@@ -286,6 +304,38 @@ public class Interprete {
 
         OperacionesAritmeticas resultado = new OperacionesAritmeticas();
         resultado.aniadirResultado(" atom ", "" + respuesta);
+        return resultado;
+    }
+
+    public IResultadoOperacion cond(String expresion){
+        Pattern pattern = Pattern.compile("[(]cond [(]([(].*[)])[)]", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(expresion);
+
+        String adentro = null;
+        while (matcher.find()){
+            adentro = matcher.group();
+        }
+
+        pattern = Pattern.compile("([(].*?[)])", Pattern.CASE_INSENSITIVE);
+        matcher = pattern.matcher(adentro);
+
+        boolean pExito = false;
+        while (matcher.find()) {
+            if (pExito) {
+                Operate(matcher.group());
+            }
+            else{
+                String param = matcher.group();
+                if(Operate(param).getEvaluacion()){ //if param is true
+                    pExito = true;
+                }
+                else
+                    break;
+
+            }
+        }
+        OperacionesAritmeticas resultado = new OperacionesAritmeticas();
+        resultado.aniadirResultado(" cond ", "exitoso");
         return resultado;
     }
 
@@ -332,6 +382,16 @@ public class Interprete {
                     @Override
                     public void aniadirResultado(String key, String result) {
 
+                    }
+
+                    @Override
+                    public void aniadirResultado(String key, String result, boolean evaluacion) {
+
+                    }
+
+                    @Override
+                    public boolean getEvaluacion() {
+                        return false;
                     }
                 };
                 return resultadoError;

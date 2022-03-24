@@ -83,8 +83,15 @@ class InterpreteTest {
     /**
      * JUnit de prueba atom
      */
+    @Test
     void atomTest() {
         Interprete t = new Interprete();
         assertEquals("El resultado de la operacion  atom  es: NIL" , t.atom("(atom '(1 2))").perzonalizarOperacion());
+    }
+
+    @Test
+    void condTest() {
+        Interprete t = new Interprete();
+        assertEquals("El resultado de la operacion  cond  es: exitoso" , t.cond("(cond ((< 1 2) (list 'a '1 'b '2) (atom '(1 2))").perzonalizarOperacion());
     }
 }
