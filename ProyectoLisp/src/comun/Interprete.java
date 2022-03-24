@@ -339,6 +339,36 @@ public class Interprete {
         return resultado;
     }
 
+    public IResultadoOperacion equals(String expresion){
+        Pattern pattern = Pattern.compile("([\"]\\w+[\"]|[0-9]+)", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(expresion);
+        String valor1 = "";
+        String valor2 = "";
+        int contador = 0;
+        String respuesta = "";
+
+        while (matcher.find()){
+            contador++;
+            if(contador == 1){
+                valor1 = matcher.group().trim();
+            }else if (contador == 2){
+                valor2 = matcher.group().trim();
+            }
+        }
+        boolean evaluacion;
+        if(valor1.equals(valor2)){
+            respuesta = "EL valor "+ valor1 + " es igual al valor " + valor2;
+            evaluacion = true;
+        }else {
+            respuesta = "EL valor "+ valor2 + " es diferente al valor " + valor1;
+            evaluacion = false;
+        }
+
+        OperacionesAritmeticas resultado = new OperacionesAritmeticas();
+        resultado.aniadirResultado(" menor ", "" + respuesta, evaluacion);
+        return resultado;
+    }
+
     /**
      * Método encargado de verificar la operacion a realizar.
      * @param expresion Programa a evaluar.
@@ -369,6 +399,8 @@ public class Interprete {
                 return mayor(expresion);
             case 8:
                 return atom(expresion);
+            case 11:
+                return equals(expresion);
 
             default:
 

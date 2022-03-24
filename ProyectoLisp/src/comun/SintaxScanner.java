@@ -39,6 +39,8 @@ public class SintaxScanner {
             return 10;
         }else if (evaluate("^[(][ ]*atom[ ](['].|[0-9]+|['][(]*.*[)]*[)]*)[ ]*[)]$", expresion)){
             return 8;
+        }else if (evaluate("^[(][ ]*equal[ ](.|[0-9]+|[(]*.*[)]*[)]*)[ ]*[)]$", expresion)){
+            return 11;
         } else {
             return 0;
         }
