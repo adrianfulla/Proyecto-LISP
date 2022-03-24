@@ -164,6 +164,56 @@ public class Interprete {
         return resultado;
     }
 
+    public IResultadoOperacion menor(String expresion){
+        Pattern pattern = Pattern.compile("([a-z]+|[0-9]+)", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(expresion);
+        int valor1 = 0;
+        int valor2 = 0;
+        int contador = 0;
+        String respuesta = "";
+
+        while (matcher.find()){
+            contador++;
+            if(contador == 1){
+                valor1 = Integer.parseInt(matcher.group().trim());
+            }else if (contador == 2){
+                valor2 = Integer.parseInt(matcher.group().trim());
+            }
+        }
+        if(valor1 < valor2){
+            respuesta = "EL valor "+ valor1 + " es menor a el valor " + valor2;
+        }else {respuesta = "EL valor "+ valor2 + " es menor a el valor " + valor1;}
+
+        OperacionesAritmeticas resultado = new OperacionesAritmeticas();
+        resultado.aniadirResultado(" menor ", "" + respuesta);
+        return resultado;
+    }
+
+    public IResultadoOperacion mayor(String expresion){
+        Pattern pattern = Pattern.compile("([a-z]+|[0-9]+)", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(expresion);
+        int valor1 = 0;
+        int valor2 = 0;
+        int contador = 0;
+        String respuesta = "";
+
+        while (matcher.find()){
+            contador++;
+            if(contador == 1){
+                valor1 = Integer.parseInt(matcher.group().trim());
+            }else if (contador == 2){
+                valor2 = Integer.parseInt(matcher.group().trim());
+            }
+        }
+        if(valor1 > valor2){
+            respuesta = "EL valor "+ valor1 + " es mayor a el valor " + valor2;
+        }else {respuesta = "EL valor "+ valor2 + " es mayor a el valor " + valor1;}
+
+        OperacionesAritmeticas resultado = new OperacionesAritmeticas();
+        resultado.aniadirResultado(" menor ", "" + respuesta);
+        return resultado;
+    }
+
     public IResultadoOperacion Operate(String expresion){
         int operacion = SintaxScanner.getState(expresion);
 
@@ -182,6 +232,10 @@ public class Interprete {
                 return setq(expresion);
             case 7:
                 return list(expresion);
+            case 9:
+                return menor(expresion);
+            case 10:
+                return mayor(expresion);
             default:
 
                 IResultadoOperacion resultadoError = new IResultadoOperacion() {

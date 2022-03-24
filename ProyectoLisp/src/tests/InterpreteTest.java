@@ -47,4 +47,16 @@ class InterpreteTest {
         Interprete t = new Interprete();
         assertEquals("El resultado de la operacion  list  es: ( a 1 b 2 )" , t.list("(list 'a '1 'b '2)").perzonalizarOperacion());
     }
+
+    @Test
+    void menor() {
+        Interprete t = new Interprete();
+        assertEquals("El resultado de la operacion  menor  es: EL valor 1 es menor a el valor 2" , t.menor("(< 1 2)").perzonalizarOperacion());
+    }
+
+    @Test
+    void mayor() {
+        Interprete t = new Interprete();
+        assertEquals("El resultado de la operacion  menor  es: EL valor 2 es mayor a el valor 1" , t.mayor("(> 1 2)").perzonalizarOperacion());
+    }
 }
