@@ -370,7 +370,8 @@ public class Interprete {
                 return mayor(expresion);
             case 8:
                 return atom(expresion);
-
+            case 12:
+                return cond(expresion);
             default:
 
                 IResultadoOperacion resultadoError = new IResultadoOperacion() {

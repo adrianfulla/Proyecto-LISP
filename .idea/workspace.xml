@@ -10,7 +10,7 @@
       <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/comun/SintaxScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/comun/SintaxScanner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Interprete$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Interprete$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Interprete.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Interprete.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/SintaxScanner.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/SintaxScanner.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/SintaxScanner.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
