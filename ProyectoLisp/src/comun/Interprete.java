@@ -328,6 +328,7 @@ public class Interprete {
                 String param = matcher.group();
                 if(Operate(param).getEvaluacion()){ //if param is true
                     pExito = true;
+                    continue;
                 }
                 else
                     break;
