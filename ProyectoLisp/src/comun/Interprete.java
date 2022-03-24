@@ -8,10 +8,18 @@ import java.util.regex.Pattern;
 public class Interprete {
     private HashMap<String, Integer> myVars;
 
+    /**
+     * Constructor del interprete
+     */
     public Interprete(){
         myVars = new HashMap<String, Integer>();
     }
 
+    /**
+     * Operación suma sencilla
+     * @param expresion Programa a evaluar.
+     * @return Resultado operacion
+     */
     public IResultadoOperacion suma(String expresion){
         Pattern pattern = Pattern.compile("([a-z]+|[0-9]+)", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
@@ -26,6 +34,11 @@ public class Interprete {
         return resultado;
     }
 
+    /**
+     * Operación resta sencilla
+     * @param expresion Programa a evaluar.
+     * @return Resultado operacion
+     */
     public IResultadoOperacion resta(String expresion){
         Pattern pattern = Pattern.compile("([a-z]+|[0-9]+)", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
@@ -45,7 +58,11 @@ public class Interprete {
         return resultado;
     }
 
-
+    /**
+     * Operación multiplicacion sencilla
+     * @param expresion Programa a evaluar.
+     * @return Resultado operacion
+     */
     public IResultadoOperacion multiplicacion(String expresion){
         Pattern pattern = Pattern.compile("([a-z]+|[0-9]+)", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
@@ -65,6 +82,11 @@ public class Interprete {
         return resultado;
     }
 
+    /**
+     * Operación division sencilla
+     * @param expresion Programa a evaluar.
+     * @return Resultado operacion
+     */
     public IResultadoOperacion division(String expresion){
         Pattern pattern = Pattern.compile("([a-z]+|[0-9]+)", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
@@ -84,6 +106,11 @@ public class Interprete {
         return resultado;
     }
 
+    /**
+     * Operación quote
+     * @param expresion Programa a evaluar.
+     * @return Resultado operacion
+     */
     public IResultadoOperacion quote(String expresion){
         Pattern pattern = Pattern.compile("[(][ ]*('|quote)([(].*[)])[ ]*[)]", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
@@ -96,6 +123,11 @@ public class Interprete {
         return resultado;
     }
 
+    /**
+     * Operación setq
+     * @param expresion Programa a evaluar.
+     * @return Resultado operacion
+     */
     public IResultadoOperacion setq(String expresion) {
         Pattern pattern = Pattern.compile("[ ]*+[a-z]+", Pattern.CASE_INSENSITIVE); //
         Matcher matcher = pattern.matcher(expresion);
@@ -149,6 +181,11 @@ public class Interprete {
 
     }
 
+    /**
+     * Operación list
+     * @param expresion Programa a evaluar.
+     * @return Resultado operacion
+     */
     public IResultadoOperacion list(String expresion){
         Pattern pattern = Pattern.compile("([']([a-z]+|[0-9]+)|[']([(]([a-z]|[a-z][ ]|[0-9]+|[0-9]+[ ])*[)]))", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
@@ -164,6 +201,49 @@ public class Interprete {
         return resultado;
     }
 
+    /**
+     * Operación atom
+     * @param expresion Programa a evaluar.
+     * @return Resultado operacion
+     */
+    public IResultadoOperacion atom(String expresion){
+        Pattern pattern = Pattern.compile("^[(][ ]*atom[ ](['].|[0-9]+|['][(]*.*[)]*[)]*)[ ]*[)]$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(expresion);
+        String[] texto = null;
+        int abierto = 0;
+        int cerrado = 0;
+        String respuesta = "";
+        while (matcher.find()){
+            texto = matcher.group(1).trim().split("");
+        }
+
+        for (int i=0; i<texto.length; i++){
+            if (texto[i].equals("(")){
+                abierto += 1;
+            }
+            if (texto[i].equals(")")) {
+                cerrado += 1;
+            }
+        }
+        for (int i=0; i<texto.length; i++){
+            if (texto[i].equals("'") && texto[i+1].equals("(") && abierto==cerrado){
+                respuesta = "NIL";
+            }
+            if (abierto==0 && cerrado==0){
+                respuesta = "T";
+            }
+        }
+
+        OperacionesAritmeticas resultado = new OperacionesAritmeticas();
+        resultado.aniadirResultado(" atom ", "" + respuesta);
+        return resultado;
+    }
+
+    /**
+     * Método encargado de verificar la operacion a realizar.
+     * @param expresion Programa a evaluar.
+     * @return Resultado operacion
+     */
     public IResultadoOperacion Operate(String expresion){
         int operacion = SintaxScanner.getState(expresion);
 
@@ -182,6 +262,8 @@ public class Interprete {
                 return setq(expresion);
             case 7:
                 return list(expresion);
+            case 8:
+                return atom(expresion);
             default:
 
                 IResultadoOperacion resultadoError = new IResultadoOperacion() {
