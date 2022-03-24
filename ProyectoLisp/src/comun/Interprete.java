@@ -2,12 +2,15 @@ package comun;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Interprete {
     private HashMap<String, Integer> myVars;
 
+    Stack<String> pila = new Stack<>();
+    SintaxScanner s = new SintaxScanner();
     /**
      * Constructor del interprete
      */
@@ -129,6 +132,7 @@ public class Interprete {
      * @return Resultado operacion
      */
     public IResultadoOperacion setq(String expresion) {
+
         Pattern pattern = Pattern.compile("[ ]*+[a-z]+", Pattern.CASE_INSENSITIVE); //
         Matcher matcher = pattern.matcher(expresion);
         String varName = "";
@@ -140,7 +144,6 @@ public class Interprete {
                 varNames.add(varName);
             }
         }
-
         pattern = Pattern.compile("[ ]+[0-9]+[ ]*", Pattern.CASE_INSENSITIVE); //
         matcher = pattern.matcher(expresion);
         ArrayList<Integer> varValues = new ArrayList();
@@ -171,6 +174,11 @@ public class Interprete {
             public void aniadirResultado(String key, String result) {
                 this.key = key;
                 this.value = result;
+            }
+
+            @Override
+            public String getResult() {
+                return null;
             }
 
         };
@@ -256,6 +264,45 @@ public class Interprete {
      * @param expresion Programa a evaluar.
      * @return Resultado operacion
      */
+
+
+    public IResultadoOperacion combinada(String expresion){
+        int v = s.veces(expresion);
+        Pattern pattern = Pattern.compile(s.regexCom("[(](?:[\\/]|[\\\\]|[\\\\+]|[\\\\-]).([(](?:[\\/]|[\\\\]|[\\\\+]|[\\\\-]).?[)]).*[)]", v), Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(expresion);
+        String pivote = "";
+        String temp = "";
+        String temp2 = "";
+        String temp3 = "";
+        String temp4 = "";
+        int contador = v-1;
+        while (matcher.find()){
+            while (!(contador==-1)){
+                System.out.println(matcher.group(contador));
+                pila.push(matcher.group(contador));
+                contador--;
+            }
+        }
+
+        int i = 0;
+        boolean bandera = false;
+        boolean bandera2 = false;
+        int con = 0;
+        while (!(i==v)) {
+            temp = pila.pull();
+            temp2 = pila.peek();
+            i++;
+            temp3 = temp3.replace(temp, temp2);
+            System.out.println(temp3);
+        }
+
+
+        OperacionesAritmeticas resultado = new OperacionesAritmeticas();
+        resultado.aniadirResultado(" combinada ", "" + temp2);
+        return resultado;
+    }
+
+
     public IResultadoOperacion atom(String expresion){
         Pattern pattern = Pattern.compile("^[(][ ]*atom[ ](['].|[0-9]+|['][(]*.*[)]*[)]*)[ ]*[)]$", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
@@ -266,7 +313,6 @@ public class Interprete {
         while (matcher.find()){
             texto = matcher.group(1).trim().split("");
         }
-
         for (int i=0; i<texto.length; i++){
             if (texto[i].equals("(")){
                 abierto += 1;
@@ -298,6 +344,7 @@ public class Interprete {
     public IResultadoOperacion Operate(String expresion){
         int operacion = SintaxScanner.getState(expresion);
 
+
         switch (operacion){
             case 1:
                 return suma(expresion);
@@ -319,7 +366,8 @@ public class Interprete {
                 return mayor(expresion);
             case 8:
                 return atom(expresion);
-
+            case 11:
+                return combinada(expresion);
             default:
 
                 IResultadoOperacion resultadoError = new IResultadoOperacion() {
@@ -333,8 +381,18 @@ public class Interprete {
                     public void aniadirResultado(String key, String result) {
 
                     }
+
+                    @Override
+                    public String getResult() {
+                        return null;
+                    }
                 };
                 return resultadoError;
         }
     }
+
+
+
+
+
 }

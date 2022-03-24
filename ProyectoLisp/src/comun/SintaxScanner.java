@@ -18,7 +18,31 @@ public class SintaxScanner {
         }
     }
 
+    public int veces(String expresion){
+        String[] texto = expresion.split("");
+        int contador = 0;
+        for (int i = 0; i<texto.length; i++){
+            if (texto[i].equals("(")){
+                contador++;
+            }
+        }
+        return contador;
+    }
+
+    public static String regexCom(String n, int veces){
+        while (!(veces == 0)){
+            veces-= 1;
+            n = "[(](?:(?:[\\/]|[\\*]|[\\+]|[\\-])[ ])*([0-9]+[ ]|[0-9]+[ ]*[)]|"+n+")*[)]";
+        }
+        return n;
+    }
+
+
+
     public static int getState(String expresion) {
+        SintaxScanner s = new SintaxScanner();
+        int v = s.veces(expresion);
+        String a = "[(](([\\/]|[\\*]|[\\+]|[\\-])[ ])*([0-9]+[ ]|[0-9]+[ ]*[)])*[)]";
         if (evaluate("^[(][ ]*[+][ ]+([a-z]+|[0-9]+)([ ]+([a-z]+|[0-9]+)[ ]*)*[)]$", expresion)) {
             return 1;
         } else if (evaluate("^[(][ ]*[-][ ]+([a-z]+|[0-9]+)([ ]+([a-z]+|[0-9]+)[ ]*)*[)]$", expresion)) {
@@ -39,6 +63,8 @@ public class SintaxScanner {
             return 10;
         }else if (evaluate("^[(][ ]*atom[ ](['].|[0-9]+|['][(]*.*[)]*[)]*)[ ]*[)]$", expresion)){
             return 8;
+        } else if (evaluate(regexCom("[(](?:(?:[\\/]|[\\*]|[\\+]|[\\-])[ ])*([0-9]+[ ]|[0-9]+[ ]*[)])*[)]", v), expresion)){
+            return 11;
         } else {
             return 0;
         }

@@ -11,9 +11,16 @@ public class OperacionesAritmeticas implements IResultadoOperacion {
        return resultado;
     }
 
+
+
     @Override
     public void aniadirResultado(String key, String result) {
         this.key = key;
         this.result = result;
+    }
+
+    @Override
+    public String getResult() {
+        return this.result;
     }
 }
