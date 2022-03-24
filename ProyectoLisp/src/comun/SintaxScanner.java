@@ -43,7 +43,9 @@ public class SintaxScanner {
         SintaxScanner s = new SintaxScanner();
         int v = s.veces(expresion);
         String a = "[(](([\\/]|[\\*]|[\\+]|[\\-])[ ])*([0-9]+[ ]|[0-9]+[ ]*[)])*[)]";
-        if (evaluate("^[(][ ]*[+][ ]+([a-z]+|[0-9]+)([ ]+([a-z]+|[0-9]+)[ ]*)*[)]$", expresion)) {
+        if(evaluate("[(]cond [(]([(].*[)])[)]", expresion)){
+            return 12;
+        }else if (evaluate("^[(][ ]*[+][ ]+([a-z]+|[0-9]+)([ ]+([a-z]+|[0-9]+)[ ]*)*[)]$", expresion)) {
             return 1;
         } else if (evaluate("^[(][ ]*[-][ ]+([a-z]+|[0-9]+)([ ]+([a-z]+|[0-9]+)[ ]*)*[)]$", expresion)) {
             return 2;
@@ -61,10 +63,12 @@ public class SintaxScanner {
             return 9;
         } else if (evaluate("^[(][ ]*[>][ ]+([a-z]+|[0-9]+)([ ]+([a-z]+|[0-9]+)[ ]*)*[)]$", expresion)) {
             return 10;
-        }else if (evaluate("^[(][ ]*atom[ ](['].|[0-9]+|['][(]*.*[)]*[)]*)[ ]*[)]$", expresion)){
+        } else if (evaluate("^[(][ ]*atom[ ](['].|[0-9]+|['][(]*.*[)]*[)]*)[ ]*[)]$", expresion)) {
             return 8;
-        } else if (evaluate(regexCom("[(](?:(?:[\\/]|[\\*]|[\\+]|[\\-])[ ])*([0-9]+[ ]|[0-9]+[ ]*[)])*[)]", v), expresion)){
+        } else if (evaluate("^[(][ ]*equal[ ](.|[0-9]+|[(]*.*[)]*[)]*)[ ]*[)]$", expresion)){
             return 11;
+        } else if (evaluate(regexCom("[(](?:(?:[\\/]|[\\*]|[\\+]|[\\-])[ ])*([0-9]+[ ]|[0-9]+[ ]*[)])*[)]", v), expresion)){
+            return 13;
         } else {
             return 0;
         }

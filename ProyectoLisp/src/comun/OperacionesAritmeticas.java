@@ -4,6 +4,7 @@ public class OperacionesAritmeticas implements IResultadoOperacion {
 
     String key;
     String result;
+    boolean evaluacion;
 
     @Override
     public String perzonalizarOperacion() {
@@ -23,4 +24,15 @@ public class OperacionesAritmeticas implements IResultadoOperacion {
     public String getResult() {
         return this.result;
     }
+    public void aniadirResultado(String key, String result, boolean evaluacion) {
+        this.key = key;
+        this.result = result;
+        this.evaluacion = evaluacion;
+    }
+
+    @Override
+    public boolean getEvaluacion() {
+        return evaluacion;
+    }
+
 }
