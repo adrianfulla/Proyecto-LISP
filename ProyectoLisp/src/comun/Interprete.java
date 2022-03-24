@@ -341,12 +341,14 @@ public class Interprete {
     }
 
     public IResultadoOperacion equals(String expresion){
-        Pattern pattern = Pattern.compile("([\"]\\w+[\"]|[0-9]+)", Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile("([\"]\\w+[\"]|[0-9]+|list( \\w+)+)", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
         String valor1 = "";
         String valor2 = "";
         int contador = 0;
         String respuesta = "";
+
+
 
         while (matcher.find()){
             contador++;
