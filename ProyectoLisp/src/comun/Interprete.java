@@ -328,6 +328,7 @@ public class Interprete {
                 String param = matcher.group();
                 if(Operate(param).getEvaluacion()){ //if param is true
                     pExito = true;
+                    continue;
                 }
                 else
                     break;
@@ -401,7 +402,8 @@ public class Interprete {
                 return atom(expresion);
             case 11:
                 return equals(expresion);
-
+            case 12:
+                return cond(expresion);
             default:
 
                 IResultadoOperacion resultadoError = new IResultadoOperacion() {
