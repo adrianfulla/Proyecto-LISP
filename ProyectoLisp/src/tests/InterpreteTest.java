@@ -94,4 +94,10 @@ class InterpreteTest {
         Interprete t = new Interprete();
         assertEquals("El resultado de la operacion  cond  es: exitoso" , t.cond("(cond ((< 1 2) (list 'a '1 'b '2) (atom '(1 2))").perzonalizarOperacion());
     }
+
+    @Test
+    void equalsTest() {
+        Interprete t = new Interprete();
+        assertEquals("El resultado de la operacion  menor  es: EL valor list 1 2 3 es igual al valor list 1 2 3" , t.equals("(equal (list 1 2 3) (list 1 2 3))").perzonalizarOperacion());
+    }
 }
