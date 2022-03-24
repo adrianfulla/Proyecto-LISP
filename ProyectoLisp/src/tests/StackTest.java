@@ -54,15 +54,5 @@ class StackTest {
         assertEquals(6, Stack.peek());
     }
 
-    @Test
-    void testPop(){
-        Stack<Integer> Stack = new Stack<Integer>();
-        Stack.push(4);
-        Stack.push(5);
-        Stack.push(6);
-        int num6 = Stack.peek();
 
-        assertEquals(num6, Stack.pop());
-        assertNotEquals(num6, Stack.pop());
-    }
 }
