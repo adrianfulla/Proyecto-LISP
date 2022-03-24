@@ -55,7 +55,7 @@ public class SintaxScanner {
             return 4;
         } else if (evaluate("^[(][ ]*('|quote)([(].*[)])[ ]*[)]$", expresion)) {
             return 5;
-        } else if (evaluate("^[(][ ]*setq([ ]+[a-z]+[ ]+[0-9])*+[ ]*[)]$", expresion)) {
+        } else if (evaluate("^[(][ ]*setq([ ]+[a-z]+[ ]+[0-9]+)*+[ ]*[)]$", expresion)) {
             return 6;
         } else if (evaluate("[(][ ]*(list|setq)[ ]*([a-z]|[0-9])?[ ]*((['][(]([a-z]+.?|[0-9]+.?)+([)].))+|(['][a-z].+|['][0-9].+)[)])", expresion)) {
             return 7;

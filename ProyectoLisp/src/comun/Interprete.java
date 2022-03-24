@@ -24,12 +24,20 @@ public class Interprete {
      * @return Resultado operacion
      */
     public IResultadoOperacion suma(String expresion){
-        Pattern pattern = Pattern.compile("([a-z]+|[0-9]+)", Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile("([a-z]+)", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
+        Pattern patternNum = Pattern.compile("(-?[0-9]+)", Pattern.CASE_INSENSITIVE);
+        Matcher matcherNum = patternNum.matcher(expresion);
         int total = 0;
+        String variable = "";
 
         while (matcher.find()){
-            total += Integer.parseInt(matcher.group().trim());
+            variable = matcher.group().trim();
+            total += myVars.get(variable);
+        }
+
+        while (matcherNum.find()){
+            total += Integer.parseInt(matcherNum.group().trim());
         }
 
         OperacionesAritmeticas resultado = new OperacionesAritmeticas();
@@ -67,16 +75,30 @@ public class Interprete {
      * @return Resultado operacion
      */
     public IResultadoOperacion multiplicacion(String expresion){
-        Pattern pattern = Pattern.compile("([a-z]+|[0-9]+)", Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile("([a-z]+)", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
+        Pattern patternNum = Pattern.compile("(-?[0-9]+)", Pattern.CASE_INSENSITIVE);
+        Matcher matcherNum = patternNum.matcher(expresion);
         int total = 0;
         boolean ingreso = true;
+        String variable = "";
+
         while (matcher.find()){
+            variable = matcher.group().trim();
             if (ingreso){
-                total = Integer.parseInt(matcher.group().trim());
+                total = myVars.get(variable);
                 ingreso = false;
             } else {
-                total = Integer.parseInt(matcher.group().trim())*total;
+                total = myVars.get(variable)*total;
+            }
+        }
+
+        while (matcherNum.find()){
+            if (ingreso){
+                total = Integer.parseInt(matcherNum.group().trim());
+                ingreso = false;
+            } else {
+                total = Integer.parseInt(matcherNum.group().trim())*total;
             }
         }
 
