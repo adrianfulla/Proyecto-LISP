@@ -100,4 +100,10 @@ class InterpreteTest {
         Interprete t = new Interprete();
         assertEquals("El resultado de la operacion  menor  es: EL valor list 1 2 3 es igual al valor list 1 2 3" , t.equals("(equal (list 1 2 3) (list 1 2 3))").perzonalizarOperacion());
     }
+
+    @Test
+    void operacionCombinadaTest() {
+        Interprete t = new Interprete();
+        assertEquals("El resultado de la operacion  Operacion Combinada  es: 72" , t.combinada("(+ 2 3 5 (+ 2 1 3 46 (* 1 2 3 4 5 6 (* 2 3 4 5 (/ 2 3 4 5)))) 5 5 )").perzonalizarOperacion());
+    }
 }
