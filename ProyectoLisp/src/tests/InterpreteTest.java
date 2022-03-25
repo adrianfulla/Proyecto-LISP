@@ -128,19 +128,21 @@ class InterpreteTest {
     @Test
     void operacionCombinadaTest() {
         Interprete t = new Interprete();
-        assertEquals("El resultado de la operacion  Operacion Combinada  es: 72" , t.combinada("(+ 2 3 5 (+ 2 1 3 46 (* 1 2 3 4 5 6 (* 2 3 4 5 (/ 2 3 4 5)))) 5 5 )").perzonalizarOperacion());
+        t.Operate("(defun factorial (n) (cond ((equal n 1) (1) t(* n 2))))");
+        assertEquals("El resultado de la operacion  Operacion Combinada  es: 72" , t.combinada("(* 2 (factorial (1)))").perzonalizarOperacion());
     }
 
     @Test
     void createDefunTest() {
         Interprete t = new Interprete();
+        t.Operate("(defun factorial (n) (cond ((equal n 1) (1) t(* n (factorial (- n 1))))))");
         assertEquals("El resultado de la operacion  creacion de funcion  es: exitosa" , t.createDefun("(defun multiply-by-seven (number) (* 7 number))").perzonalizarOperacion());
     }
 
     @Test
     void DefunTest() {
         Interprete t = new Interprete();
-        t.Operate("(defun factorial (n) (cond ((= n 2) (1) t(+ n 2)))");
+        t.Operate("(defun factorial (n) (cond ((equal n 1) (1) t(* n (factorial (- n 1))))))");
         assertEquals("El resultado de la operacion  multiply-by-seven es: 14" , t.Operate("(factorial (1))").perzonalizarOperacion());
     }
 }

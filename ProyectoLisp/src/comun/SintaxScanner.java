@@ -117,7 +117,7 @@ public class SintaxScanner {
         } else if(evaluate("[(](.*?)[ ]([(].*[)])", expresion)){
             System.out.println(15);
             return 15;
-        }else if(evaluate("([(][ ]*-?[0-9]+[ ]*[)])", expresion)){
+        }else if(evaluate("([(][ ]*-?[0-9]+[ ]*[)]|[ ]*[0-9]+[ ]*)", expresion)){
             System.out.println(16);
             return 16;
         }else {

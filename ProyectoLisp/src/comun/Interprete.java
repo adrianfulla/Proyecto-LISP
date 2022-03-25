@@ -144,7 +144,7 @@ public class Interprete {
         Matcher matcher = pattern.matcher(expresion);
         Pattern patternNum = Pattern.compile("(-?[0-9]+)", Pattern.CASE_INSENSITIVE);
         Matcher matcherNum = patternNum.matcher(expresion);
-        float total = 0;
+        int total = 0;
         String variable = "";
         boolean ingreso = true;
         while (matcher.find()){
@@ -360,7 +360,7 @@ public class Interprete {
      */
     public IResultadoOperacion combinada(String expresion){
         int v = s.veces(expresion);
-        Pattern pattern = Pattern.compile("[(](?:[\\/]|[\\*]|[\\+]|[\\-]).*([(](?:[\\/]|[\\*]|[\\+]|[\\-]).*?[)]).*[)]", Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile("[(](?:[\\/]|[\\*]|[\\+]|[\\-]|.*?).*([(](?:[\\/]|[\\*]|[\\+]|[\\-]|.*?).*?[)]).*[)]", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
         String match = "";
         String adentro = "";
@@ -376,15 +376,18 @@ public class Interprete {
         while(i < v-1){// 0 1 2
             if(i < v-2){// 0 1
                 String temp = match.replace(adentro,res);
+                System.out.println(match+"/ " +temp +"/ " +adentro +"/ " +res);
                 matcher = pattern.matcher(temp);
                 while (matcher.find()){
                     match = matcher.group(0);
                     adentro = matcher.group(1);
+                    System.out.println(match+"/ " +adentro);
                 }
             } else {
                 adentro = match.replace(adentro, res);
             }
             res = Operate(adentro).getResult();
+            System.out.println(res);
             i++;
         }
 
