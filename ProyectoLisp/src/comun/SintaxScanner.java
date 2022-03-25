@@ -3,14 +3,32 @@ package comun;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Lee las expresiones en regex
+ *
+ * @author Diego Alexander Hernández Silvestre
+ * @author Renatto Esteban Guzman Sosa
+ * @author Adrian Fulladolsa Palma
+ * @author David Jonathan Aragon Vasquez
+ */
 public class SintaxScanner {
 
+    /**
+     * Evalua las expresiones regex
+     * @param regex esperado de la expresion
+     * @param expresion dada por el usuario
+     * @return  si se encontró el patrón en la expresión
+     */
     public static boolean evaluate(String regex, String expresion) {
         Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
         return matcher.find();
     }
 
+    /**
+     * Separa las partes de la expresión
+     * @param programa
+     */
     public void separarExpresion(String programa){
         String[] expresion = programa.split(" ");
         for (int i=0; i<expresion.length; i++){
@@ -18,6 +36,11 @@ public class SintaxScanner {
         }
     }
 
+    /**
+     * Encuentra la cantidad de paréntesis que se encuentra en una expresion compleja.
+     * @param expresion Programa a evaluar
+     * @return contador Cantidad de paréntesis que se encuentran en la expresion
+     */
     public int veces(String expresion){
         String[] texto = expresion.split("");
         int contador = 0;
@@ -29,16 +52,12 @@ public class SintaxScanner {
         return contador;
     }
 
-    public static String regexCom(String n, int veces){
-        while (!(veces == 0)){
-            veces-= 1;
-            n = "[(](?:(?:[\\/]|[\\*]|[\\+]|[\\-])[ ])*([0-9]+[ ]|[0-9]+[ ]*[)]|"+n+")*[)]";
-        }
-        return n;
-    }
 
-
-
+    /**
+     * Obtiene el estado segun el regex que utilice la expresion
+     * @param expresion Programa a evaluar
+     * @return estado
+     */
     public static int getState(String expresion) {
         SintaxScanner s = new SintaxScanner();
         int v = s.veces(expresion);
