@@ -10,60 +10,54 @@ import java.util.*;
 
 public class Stack<T> {
 
-    private ArrayList<T> lista;
+    private ArrayList<T> miListaInterna;
 
     public Stack() {
-        lista = new ArrayList<>();
+        miListaInterna = new ArrayList<T>();
     }
 
     /**
-     *
-     * @return tamaño del Stack
-     */
-    public int count() {
-        return lista.size();
-    }
-    /**
-     *
-     * @return si está vacio el Stack true, si no false
-     */
-
-    public boolean isEmpty() {
-        return lista.isEmpty();
-    }
-    /**
-     *
-     * @return T, primera posición del Stack
-     */
-
-    public T peek() {
-        return lista.get(0);
-    }
-    /**
-     *
-     * @return T, el Stack sin la primera posición
-     */
-
-    public void pull() {
-        lista.remove(0);    }
-
-    /**
-     *
-     * @param value valor a meter en el stack
+     * Añade un valor a la pila en la primer posición.
+     * @param value Valor a agregar.
      */
 
     public void push(T value) {
-        lista.add(0, value);
+        miListaInterna.add(0, value);
     }
 
     /**
-     *
-     * @return pop valor en la primera posición del Stack que se borró
+     * Elimina el elemento de la pila en la posición cero.
+     * @return El elemento removido
      */
-    public T pop(){
-        T pop = lista.get(0);
-        lista.remove(0);
 
-        return pop;
+    public T pull() {
+        return miListaInterna.remove(0);
+    }
+
+    /**
+     * Obtiene el valor del elemento de la posición cero de la pila
+     * @return El elemento obtenido.
+     */
+
+    public T peek() {
+        return miListaInterna.get(0);
+    }
+
+    /**
+     * Cuenta la cantidad de datos que tiene la pila en ese momento.
+     * @return El número de elementos de la pila.
+     */
+
+    public int count() {
+        return miListaInterna.size();
+    }
+
+    /**
+     * Verifica si la pila se encuentra vacia.
+     * @return True = Vacia, False = Contiene elementos.
+     */
+
+    public boolean isEmpty() {
+        return miListaInterna.isEmpty();
     }
 }

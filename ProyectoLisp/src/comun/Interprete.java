@@ -2,12 +2,15 @@ package comun;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Interprete {
     private HashMap<String, Integer> myVars;
 
+    Stack<String> pila = new Stack<>();
+    SintaxScanner s = new SintaxScanner();
     /**
      * Constructor del interprete
      */
@@ -85,16 +88,30 @@ public class Interprete {
      * @return Resultado operacion
      */
     public IResultadoOperacion multiplicacion(String expresion){
-        Pattern pattern = Pattern.compile("([a-z]+|[0-9]+)", Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile("([a-z]+)", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
+        Pattern patternNum = Pattern.compile("(-?[0-9]+)", Pattern.CASE_INSENSITIVE);
+        Matcher matcherNum = patternNum.matcher(expresion);
         int total = 0;
         boolean ingreso = true;
+        String variable = "";
+
         while (matcher.find()){
+            variable = matcher.group().trim();
             if (ingreso){
-                total = Integer.parseInt(matcher.group().trim());
+                total = myVars.get(variable);
                 ingreso = false;
             } else {
-                total = Integer.parseInt(matcher.group().trim())*total;
+                total = myVars.get(variable)*total;
+            }
+        }
+
+        while (matcherNum.find()){
+            if (ingreso){
+                total = Integer.parseInt(matcherNum.group().trim());
+                ingreso = false;
+            } else {
+                total = Integer.parseInt(matcherNum.group().trim())*total;
             }
         }
 
@@ -164,6 +181,7 @@ public class Interprete {
      * @return Resultado operacion
      */
     public IResultadoOperacion setq(String expresion) {
+
         Pattern pattern = Pattern.compile("[ ]*+[a-z]+", Pattern.CASE_INSENSITIVE); //
         Matcher matcher = pattern.matcher(expresion);
         String varName = "";
@@ -175,8 +193,7 @@ public class Interprete {
                 varNames.add(varName);
             }
         }
-
-        pattern = Pattern.compile("[ ]+[0-9]+[ ]*", Pattern.CASE_INSENSITIVE); //
+        pattern = Pattern.compile("[ ]+-?[0-9]+[ ]*", Pattern.CASE_INSENSITIVE); //
         matcher = pattern.matcher(expresion);
         ArrayList<Integer> varValues = new ArrayList();
         while (matcher.find()) {
@@ -189,6 +206,7 @@ public class Interprete {
                 myVars.put(varNames.get(i),varValues.get(i));
             }
         }
+        System.out.println(myVars.toString());
 
         //Using anonymous Inner class
         IResultadoOperacion assigmentResult = new IResultadoOperacion() {
@@ -209,6 +227,11 @@ public class Interprete {
             }
 
             @Override
+            public String getResult() {
+                return null;
+            }
+
+            @Override
             public void aniadirResultado(String key, String result, boolean evaluacion) {
 
             }
@@ -217,8 +240,9 @@ public class Interprete {
             public boolean getEvaluacion() {
                 return false;
             }
+            }
 
-        };
+            ;
 
         assigmentResult.aniadirResultado(varName, varValue.toString());
 
@@ -232,7 +256,7 @@ public class Interprete {
      * @return Resultado operacion
      */
     public IResultadoOperacion list(String expresion){
-        Pattern pattern = Pattern.compile("([']([a-z]+|[0-9]+)|[']([(]([a-z]|[a-z][ ]|[0-9]+|[0-9]+[ ])*[)]))", Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile("([']([a-z]+|-?[0-9]+)|[']([(]([a-z]|[a-z][ ]|-?[0-9]+|-?[0-9]+[ ])*[)]))", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
         String respuesta = "";
         String[] util;
@@ -247,7 +271,7 @@ public class Interprete {
     }
 
     public IResultadoOperacion menor(String expresion){
-        Pattern pattern = Pattern.compile("([a-z]+|[0-9]+)", Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile("([a-z]+|-?[0-9]+)", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
         int valor1 = 0;
         int valor2 = 0;
@@ -277,7 +301,7 @@ public class Interprete {
     }
 
     public IResultadoOperacion mayor(String expresion){
-        Pattern pattern = Pattern.compile("([a-z]+|[0-9]+)", Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile("([a-z]+|-?[0-9]+)", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
         int valor1 = 0;
         int valor2 = 0;
@@ -309,8 +333,46 @@ public class Interprete {
      * @param expresion Programa a evaluar.
      * @return Resultado operacion
      */
+
+
+    public IResultadoOperacion combinada(String expresion){
+        int v = s.veces(expresion);
+        Pattern pattern = Pattern.compile("[(](?:[\\/]|[\\*]|[\\+]|[\\-]).*([(](?:[\\/]|[\\*]|[\\+]|[\\-]).*?[)]).*[)]", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(expresion);
+        String match = "";
+        String adentro = "";
+        while (matcher.find()){
+            match = matcher.group(0);
+            adentro = matcher.group(1);
+        }
+
+        String res = "";
+        int i = 0;
+
+        res = Operate(adentro).getResult();
+        while(i < v-1){// 0 1 2
+            if(i < v-2){// 0 1
+                String temp = match.replace(adentro,res);
+                matcher = pattern.matcher(temp);
+                while (matcher.find()){
+                    match = matcher.group(0);
+                    adentro = matcher.group(1);
+                }
+            } else {
+                adentro = match.replace(adentro, res);
+            }
+            res = Operate(adentro).getResult();
+            i++;
+        }
+
+        OperacionesAritmeticas resultado = new OperacionesAritmeticas();
+        resultado.aniadirResultado(" Operacion Combinada ", "" + res);
+        return resultado;
+    }
+
+
     public IResultadoOperacion atom(String expresion){
-        Pattern pattern = Pattern.compile("^[(][ ]*atom[ ](['].|[0-9]+|['][(]*.*[)]*[)]*)[ ]*[)]$", Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile("^[(][ ]*atom[ ](['].|-?[0-9]+|['][(]*.*[)]*[)]*)[ ]*[)]$", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
         String[] texto = null;
         int abierto = 0;
@@ -319,7 +381,6 @@ public class Interprete {
         while (matcher.find()){
             texto = matcher.group(1).trim().split("");
         }
-
         for (int i=0; i<texto.length; i++){
             if (texto[i].equals("(")){
                 abierto += 1;
@@ -376,7 +437,7 @@ public class Interprete {
     }
 
     public IResultadoOperacion equals(String expresion){
-        Pattern pattern = Pattern.compile("([\"]\\w+[\"]|[0-9]+|list( \\w+)+)", Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile("([\"]\\w+[\"]|-?[0-9]+|list( \\w+)+)", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
         String valor1 = "";
         String valor2 = "";
@@ -441,6 +502,8 @@ public class Interprete {
                 return equals(expresion);
             case 12:
                 return cond(expresion);
+            case 13:
+                return combinada(expresion);
             default:
 
                 IResultadoOperacion resultadoError = new IResultadoOperacion() {
@@ -456,6 +519,10 @@ public class Interprete {
                     }
 
                     @Override
+                    public String getResult() {
+                        return null;
+                    }
+
                     public void aniadirResultado(String key, String result, boolean evaluacion) {
 
                     }
@@ -468,4 +535,9 @@ public class Interprete {
                 return resultadoError;
         }
     }
+
+
+
+
+
 }
