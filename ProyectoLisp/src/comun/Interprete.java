@@ -1,5 +1,7 @@
 package comun;
 
+import com.sun.nio.sctp.AbstractNotificationHandler;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,14 +10,17 @@ import java.util.regex.Pattern;
 
 public class Interprete {
     private HashMap<String, Integer> myVars;
+    private HashMap<String, String> funciones;
 
     Stack<String> pila = new Stack<>();
+
     SintaxScanner s = new SintaxScanner();
     /**
      * Constructor del interprete
      */
     public Interprete(){
         myVars = new HashMap<String, Integer>();
+        funciones = new HashMap<String,String>();
     }
 
     /**
@@ -409,32 +414,46 @@ public class Interprete {
 
         String adentro = null;
         while (matcher.find()){
-            adentro = matcher.group();
+            adentro = matcher.group(1);
         }
 
-        pattern = Pattern.compile("([(].*?[)])", Pattern.CASE_INSENSITIVE);
+        pattern = Pattern.compile("([(].*?[)]+|t[(].*[)])", Pattern.CASE_INSENSITIVE);
         matcher = pattern.matcher(adentro);
-
         boolean pExito = false;
+        String exito = "";
+        ArrayList<String> matches = new ArrayList<String>();
+        Character t = 't';
         while (matcher.find()) {
-            if (pExito) {
-                Operate(matcher.group());
-            }
-            else{
-                String param = matcher.group();
-                if(Operate(param).getEvaluacion()){ //if param is true
-                    pExito = true;
-                    continue;
-                }
-                else
-                    break;
+            matches.add(matcher.group());
+        }
 
+        for(int i = 0; i<matches.size();i++){
+            System.out.println(matches.get(i).charAt(0));
+            if(pExito){
+                if(!(t.equals(matches.get(i).charAt(0)))) {
+                    Operate(matches.get(i));
+                }
+            }
+            else {
+                if(Operate(matches.get(i)).getEvaluacion()){
+                    pExito = true;
+                    exito = "exitoso";
+                }
+                else if(t.equals(matches.get(i).charAt(0))){
+                    Operate(matches.get(i).substring(1));
+                    exito = "exitoso";
+                }
+                else {
+                    exito = "fallido";
+                }
             }
         }
+
         OperacionesAritmeticas resultado = new OperacionesAritmeticas();
-        resultado.aniadirResultado(" cond ", "exitoso");
+        resultado.aniadirResultado(" cond ", exito);
         return resultado;
     }
+
 
     public IResultadoOperacion equals(String expresion){
         Pattern pattern = Pattern.compile("([\"]\\w+[\"]|-?[0-9]+|list( \\w+)+)", Pattern.CASE_INSENSITIVE);
@@ -468,12 +487,73 @@ public class Interprete {
         return resultado;
     }
 
+    public IResultadoOperacion createDefun(String expresion){
+        Pattern pattern = Pattern.compile("[(]defun (.*?)[ ]([(].*[)])[)]", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(expresion);
+        String k = "";
+        String v = "";
+        while (matcher.find()){
+            k = matcher.group(1);
+            v = matcher.group(2);
+        }
+        funciones.put(k,v);
+
+        OperacionesAritmeticas resultado = new OperacionesAritmeticas();
+        resultado.aniadirResultado(" creacion de funcion ", "exitosa");
+        return resultado;
+    }
+
+    public IResultadoOperacion defun(String expresion){
+        Pattern pattern = Pattern.compile("[(](.*?)[ ]([(].*[)])[)]", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(expresion);
+        System.out.println(funciones.toString());
+
+        //Variables requeridas
+        boolean fCorre = false;
+        String funcion = "";
+        String paramv = "";
+        String res = "";
+
+        //Obtener la funcion y el parametro
+        while (matcher.find()) {
+            funcion = matcher.group(1).trim();
+            paramv = matcher.group(2).trim();
+        }
+        System.out.println(funcion);
+        if(funciones.containsKey(funcion)) {
+            pattern = Pattern.compile("([(]cond [(]([(].*[)])[)]|[(].*?[)])", Pattern.CASE_INSENSITIVE);
+            matcher = pattern.matcher(funciones.get(funcion));
+            String paramk = "";
+            ArrayList<String> matches = new ArrayList<String>();
+
+            while (matcher.find()) {
+                matches.add(matcher.group());
+            }
+            for(int i = 0; i<matches.size();i++){
+                if(fCorre){
+                    res = Operate(matches.get(i)).getResult();
+                }
+                else {
+                    paramk = matches.get(i).replaceAll("([(]|[)])", "").trim();
+                    int intparamV = Integer.parseInt(paramv.replaceAll("([(]|[)])", "").trim());
+
+                    myVars.put(paramk,intparamV);
+                    fCorre = true;
+                }
+            }
+        }else
+            res = "Funcion no existente";
+
+        OperacionesAritmeticas resultado = new OperacionesAritmeticas();
+        resultado.aniadirResultado(" " + funcion + "", res);
+        return resultado;
+    }
+
     /**
      * Método encargado de verificar la operacion a realizar.
      * @param expresion Programa a evaluar.
      * @return Resultado operacion
      */
-
     public IResultadoOperacion Operate(String expresion){
         int operacion = SintaxScanner.getState(expresion);
 
@@ -504,6 +584,10 @@ public class Interprete {
                 return cond(expresion);
             case 13:
                 return combinada(expresion);
+            case 14:
+                return createDefun(expresion);
+            case 15:
+                return defun(expresion);
             default:
 
                 IResultadoOperacion resultadoError = new IResultadoOperacion() {

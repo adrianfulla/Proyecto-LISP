@@ -32,7 +32,7 @@ public class SintaxScanner {
     public static String regexCom(String n, int veces){
         while (!(veces == 0)){
             veces-= 1;
-            n = "[(](?:(?:[\\/]|[\\*]|[\\+]|[\\-])[ ])*([0-9]+[ ]|[0-9]+[ ]*[)]|"+n+")*[)]";
+            n = "("+ n + "|[(].*?[)])";
         }
         return n;
     }
@@ -43,7 +43,9 @@ public class SintaxScanner {
         SintaxScanner s = new SintaxScanner();
         int v = s.veces(expresion);
         String a = "[(](([\\/]|[\\*]|[\\+]|[\\-])[ ])*([0-9]+[ ]|[0-9]+[ ]*[)])*[)]";
-        if(evaluate("[(]cond [(]([(].*[)])[)]", expresion)){
+        if(evaluate("[(]defun (.*?)[ ]([(].*[)])[)]", expresion)){
+            return 14;
+        }else if(evaluate("[(]cond [(]([(].*[)])[)]", expresion)){
             return 12;
         }else if (evaluate("^[(][ ]*[+][ ]+([a-z]+|-?[0-9]+)([ ]+([a-z]+|-?[0-9]+)[ ]*)*[)]$", expresion)) {
             return 1;
@@ -69,7 +71,9 @@ public class SintaxScanner {
             return 11;
         } else if (evaluate("[(](?:[\\/]|[\\*]|[\\+]|[\\-]).*([(](?:[\\/]|[\\*]|[\\+]|[\\-]).*?[)]).*[)]", expresion)){
             return 13;
-        } else {
+        } else if(evaluate("[(](.*?)[ ]([(].*[)])", expresion)){
+            return 15;
+        }else {
             return 0;
         }
     }

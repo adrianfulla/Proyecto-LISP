@@ -92,7 +92,7 @@ class InterpreteTest {
     @Test
     void condTest() {
         Interprete t = new Interprete();
-        assertEquals("El resultado de la operacion  cond  es: exitoso" , t.cond("(cond ((< 1 2) (list 'a '1 'b '2) (atom '(1 2))").perzonalizarOperacion());
+        assertEquals("El resultado de la operacion  cond  es: exitoso" , t.cond("(cond ((< 3 2) (list 'a '1 'b '2) t(atom '(1 2)))").perzonalizarOperacion());
     }
 
     @Test
@@ -105,5 +105,18 @@ class InterpreteTest {
     void operacionCombinadaTest() {
         Interprete t = new Interprete();
         assertEquals("El resultado de la operacion  Operacion Combinada  es: 72" , t.combinada("(+ 2 3 5 (+ 2 1 3 46 (* 1 2 3 4 5 6 (* 2 3 4 5 (/ 2 3 4 5)))) 5 5 )").perzonalizarOperacion());
+    }
+
+    @Test
+    void createDefunTest() {
+        Interprete t = new Interprete();
+        assertEquals("El resultado de la operacion  creacion de funcion  es: exitosa" , t.createDefun("(defun multiply-by-seven (number) (* 7 number))").perzonalizarOperacion());
+    }
+
+    @Test
+    void DefunTest() {
+        Interprete t = new Interprete();
+        t.createDefun("(defun multiply-by-seven (number) (* 7 number))");
+        assertEquals("El resultado de la operacion  multiply-by-seven es: 14" , t.defun("(multiply-by-seven (2))").perzonalizarOperacion());
     }
 }
