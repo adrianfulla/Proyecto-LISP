@@ -49,7 +49,7 @@ class InterpreteTest {
      */
     void divisionTest() {
         Interprete t = new Interprete();
-        assertEquals("El resultado de la operacion  division  es: 0.5" , t.division("(/ 2 2 2)").perzonalizarOperacion());
+        assertEquals("El resultado de la operacion  division  es: 0" , t.division("(/ 2 2 2)").perzonalizarOperacion());
     }
     @Test
     /**
@@ -145,7 +145,7 @@ class InterpreteTest {
     @Test
     void DefunTest() {
         Interprete t = new Interprete();
-        t.Operate("(defun factorial (n) (cond ((= n 1) (1) (t(* n (factorial (- n 1)))))");
-        assertEquals("El resultado de la operacion  multiply-by-seven es: 14" , t.Operate("(factorial (2))").perzonalizarOperacion());
+        t.Operate("(defun multiply-by-seven (number) (* 7 number))");
+        assertEquals("El resultado de la operacion  multiply-by-seven es: 14" , t.Operate("(multiply-by-seven (2))").perzonalizarOperacion());
     }
 }
