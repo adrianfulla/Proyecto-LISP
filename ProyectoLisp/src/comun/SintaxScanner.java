@@ -44,36 +44,55 @@ public class SintaxScanner {
         int v = s.veces(expresion);
         String a = "[(](([\\/]|[\\*]|[\\+]|[\\-])[ ])*([0-9]+[ ]|[0-9]+[ ]*[)])*[)]";
         if(evaluate("[(]defun (.*?)[ ]([(].*[)])[)]", expresion)){
+            System.out.println(14);
             return 14;
-        }else if(evaluate("[(]cond [(]([(].*[)])[)]", expresion)){
+        } else if(evaluate("[(]cond [(]([(].*?[)])[)]+", expresion)){
+            System.out.println(12);
             return 12;
-        }else if (evaluate("^[(][ ]*[+][ ]+([a-z]+|-?[0-9]+)([ ]+([a-z]+|-?[0-9]+)[ ]*)*[)]$", expresion)) {
+        } else if (evaluate("^[(][ ]*[+][ ]+([a-z]+|-?[0-9]+)([ ]+([a-z]+|-?[0-9]+)[ ]*)*[)]$", expresion)) {
+            System.out.println(1);
             return 1;
         } else if (evaluate("^[(][ ]*[-][ ]+([a-z]+|-?[0-9]+)([ ]+([a-z]+|-?[0-9]+)[ ]*)*[)]$", expresion)) {
+            System.out.println(2);
             return 2;
         } else if (evaluate("^[(][ ]*[*][ ]+([a-z]+|-?[0-9]+)([ ]+([a-z]+|-?[0-9]+)[ ]*)*[)]$", expresion)) {
+            System.out.println(3);
             return 3;
         } else if (evaluate("^[(][ ]*[/][ ]+([a-z]+|-?[0-9]+)([ ]+([a-z]+|-?[0-9]+)[ ]*)*[)]$", expresion)) {
+            System.out.println(4);
             return 4;
         } else if (evaluate("^[(][ ]*('|quote)([(].*[)])[ ]*[)]$", expresion)) {
+            System.out.println(5);
             return 5;
         } else if (evaluate("^[(][ ]*setq([ ]+[a-z]+[ ]+-?[0-9]+)*+[ ]*[)]$", expresion)) {
+            System.out.println(6);
             return 6;
         } else if (evaluate("[(][ ]*(list|setq)[ ]*([a-z]|-?[0-9])?[ ]*((['][(]([a-z]+.?|-?[0-9]+.?)+([)].))+|(['][a-z].+|[']-?[0-9].+)[)])", expresion)) {
+            System.out.println(7);
             return 7;
         } else if (evaluate("^[(][ ]*[<][ ]+([a-z]+|-?[0-9]+)([ ]+([a-z]+|-?[0-9]+)[ ]*)*[)]$", expresion)) {
+            System.out.println(9);
             return 9;
         } else if (evaluate("^[(][ ]*[>][ ]+([a-z]+|-?[0-9]+)([ ]+([a-z]+|-?[0-9]+)[ ]*)*[)]$", expresion)) {
+            System.out.println(10);
             return 10;
         } else if (evaluate("^[(][ ]*atom[ ](['].|-?[0-9]+|['][(]*.*[)]*[)]*)[ ]*[)]$", expresion)) {
+            System.out.println(8);
             return 8;
         } else if (evaluate("^[(][ ]*equal[ ](.|-?[0-9]+|[(]*.*[)]*[)]*)[ ]*[)]$", expresion)){
+            System.out.println(11);
             return 11;
         } else if (evaluate("[(](?:[\\/]|[\\*]|[\\+]|[\\-]).*([(](?:[\\/]|[\\*]|[\\+]|[\\-]).*?[)]).*[)]", expresion)){
+            System.out.println(13);
             return 13;
         } else if(evaluate("[(](.*?)[ ]([(].*[)])", expresion)){
+            System.out.println(15);
             return 15;
+        }else if(evaluate("([(][ ]*-?[0-9]+[ ]*[)])", expresion)){
+            System.out.println(16);
+            return 16;
         }else {
+            System.out.println(0);
             return 0;
         }
     }

@@ -9,17 +9,12 @@
       <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/comun/Interprete.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/comun/Interprete.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/comun/SintaxScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/comun/SintaxScanner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/tests/InterpreteTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/tests/InterpreteTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/DriverProgram.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/DriverProgram.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Interprete$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Interprete$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Interprete$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Interprete$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Interprete.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Interprete.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/SintaxScanner.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/SintaxScanner.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/tests/InterpreteTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/tests/InterpreteTest.class" afterDir="false" />
     </list>
-    <list id="7b85a542-e38a-4c22-9526-c16809d2b19d" name="Changes by daher" comment="">
-      <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/comun/Interprete.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/comun/Interprete.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/comun/SintaxScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/comun/SintaxScanner.java" afterDir="false" />
-    </list>
+    <list id="7b85a542-e38a-4c22-9526-c16809d2b19d" name="Changes by daher" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,37 +43,6 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/ProyectoLisp/src/comun/Interprete.java">
-      <ranges>
-        <range start1="2" end1="2" start2="2" end2="4" changelist="e21da4d0-075f-4bc5-99e4-8f90605acc89" />
-        <range start1="10" end1="10" start2="12" end2="13" changelist="e21da4d0-075f-4bc5-99e4-8f90605acc89" />
-        <range start1="12" end1="12" start2="15" end2="16" changelist="e21da4d0-075f-4bc5-99e4-8f90605acc89" />
-        <range start1="18" end1="18" start2="22" end2="23" changelist="e21da4d0-075f-4bc5-99e4-8f90605acc89" />
-        <range start1="411" end1="412" start2="416" end2="417" changelist="e21da4d0-075f-4bc5-99e4-8f90605acc89" />
-        <range start1="414" end1="415" start2="419" end2="420" changelist="e21da4d0-075f-4bc5-99e4-8f90605acc89" />
-        <range start1="416" end1="417" start2="421" end2="421" changelist="e21da4d0-075f-4bc5-99e4-8f90605acc89" />
-        <range start1="418" end1="418" start2="422" end2="425" changelist="e21da4d0-075f-4bc5-99e4-8f90605acc89" />
-        <range start1="419" end1="421" start2="426" end2="435" changelist="e21da4d0-075f-4bc5-99e4-8f90605acc89" />
-        <range start1="422" end1="425" start2="436" end2="438" changelist="e21da4d0-075f-4bc5-99e4-8f90605acc89" />
-        <range start1="426" end1="427" start2="439" end2="440" changelist="e21da4d0-075f-4bc5-99e4-8f90605acc89" />
-        <range start1="428" end1="431" start2="441" end2="448" changelist="e21da4d0-075f-4bc5-99e4-8f90605acc89" />
-        <range start1="433" end1="433" start2="450" end2="451" changelist="e21da4d0-075f-4bc5-99e4-8f90605acc89" />
-        <range start1="434" end1="435" start2="452" end2="453" changelist="e21da4d0-075f-4bc5-99e4-8f90605acc89" />
-        <range start1="437" end1="437" start2="455" end2="456" changelist="e21da4d0-075f-4bc5-99e4-8f90605acc89" />
-        <range start1="469" end1="469" start2="488" end2="550" changelist="e21da4d0-075f-4bc5-99e4-8f90605acc89" />
-        <range start1="475" end1="476" start2="556" end2="556" changelist="7b85a542-e38a-4c22-9526-c16809d2b19d" />
-        <range start1="506" end1="506" start2="586" end2="590" changelist="e21da4d0-075f-4bc5-99e4-8f90605acc89" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/ProyectoLisp/src/comun/SintaxScanner.java">
-      <ranges>
-        <range start1="34" end1="35" start2="34" end2="35" changelist="7b85a542-e38a-4c22-9526-c16809d2b19d" />
-        <range start1="45" end1="46" start2="45" end2="48" changelist="e21da4d0-075f-4bc5-99e4-8f90605acc89" />
-        <range start1="71" end1="72" start2="73" end2="76" changelist="e21da4d0-075f-4bc5-99e4-8f90605acc89" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -114,7 +78,7 @@
       <recent name="tests" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DriverProgram (1)">
+  <component name="RunManager" selected="JUnit.InterpreteTest.DefunTest">
     <configuration name="DriverProgram (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="comun.DriverProgram" />
       <module name="Proyecto-LISP" />
@@ -194,11 +158,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.DriverProgram (1)" />
         <item itemvalue="JUnit.InterpreteTest.DefunTest" />
+        <item itemvalue="JUnit.InterpreteTest.equalsTest" />
+        <item itemvalue="Application.DriverProgram (1)" />
         <item itemvalue="JUnit.InterpreteTest.condTest" />
         <item itemvalue="JUnit.InterpreteTest.createDefunTest" />
-        <item itemvalue="JUnit.InterpreteTest.equalsTest" />
       </list>
     </recent_temporary>
   </component>

@@ -409,7 +409,7 @@ public class Interprete {
     }
 
     public IResultadoOperacion cond(String expresion){
-        Pattern pattern = Pattern.compile("[(]cond [(]([(].*[)])[)]", Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile("[(]cond [(]([(].*?[)])[)]+", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
 
         String adentro = null;
@@ -420,7 +420,7 @@ public class Interprete {
         pattern = Pattern.compile("([(].*?[)]+|t[(].*[)])", Pattern.CASE_INSENSITIVE);
         matcher = pattern.matcher(adentro);
         boolean pExito = false;
-        String exito = "";
+        String res = null;
         ArrayList<String> matches = new ArrayList<String>();
         Character t = 't';
         while (matcher.find()) {
@@ -428,29 +428,26 @@ public class Interprete {
         }
 
         for(int i = 0; i<matches.size();i++){
-            System.out.println(matches.get(i).charAt(0));
             if(pExito){
                 if(!(t.equals(matches.get(i).charAt(0)))) {
-                    Operate(matches.get(i));
+                    res = Operate(matches.get(i)).getResult();
                 }
             }
             else {
                 if(Operate(matches.get(i)).getEvaluacion()){
                     pExito = true;
-                    exito = "exitoso";
                 }
                 else if(t.equals(matches.get(i).charAt(0))){
-                    Operate(matches.get(i).substring(1));
-                    exito = "exitoso";
+                    res = Operate(matches.get(i).substring(1)).getResult();
                 }
                 else {
-                    exito = "fallido";
+                    res = "fallido";
                 }
             }
         }
 
         OperacionesAritmeticas resultado = new OperacionesAritmeticas();
-        resultado.aniadirResultado(" cond ", exito);
+        resultado.aniadirResultado(" cond ", res);
         return resultado;
     }
 
@@ -506,7 +503,6 @@ public class Interprete {
     public IResultadoOperacion defun(String expresion){
         Pattern pattern = Pattern.compile("[(](.*?)[ ]([(].*[)])[)]", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
-        System.out.println(funciones.toString());
 
         //Variables requeridas
         boolean fCorre = false;
@@ -519,9 +515,8 @@ public class Interprete {
             funcion = matcher.group(1).trim();
             paramv = matcher.group(2).trim();
         }
-        System.out.println(funcion);
         if(funciones.containsKey(funcion)) {
-            pattern = Pattern.compile("([(]cond [(]([(].*[)])[)]|[(].*?[)])", Pattern.CASE_INSENSITIVE);
+            pattern = Pattern.compile("([(]cond [(][(].*[)][)]|[(].*?[)])", Pattern.CASE_INSENSITIVE);
             matcher = pattern.matcher(funciones.get(funcion));
             String paramk = "";
             ArrayList<String> matches = new ArrayList<String>();
@@ -532,10 +527,11 @@ public class Interprete {
             for(int i = 0; i<matches.size();i++){
                 if(fCorre){
                     res = Operate(matches.get(i)).getResult();
+                    System.out.println(res);
                 }
                 else {
                     paramk = matches.get(i).replaceAll("([(]|[)])", "").trim();
-                    int intparamV = Integer.parseInt(paramv.replaceAll("([(]|[)])", "").trim());
+                    int intparamV = Integer.parseInt(Operate(paramv).getResult());
 
                     myVars.put(paramk,intparamV);
                     fCorre = true;
@@ -543,9 +539,19 @@ public class Interprete {
             }
         }else
             res = "Funcion no existente";
+            System.out.println(res);
 
         OperacionesAritmeticas resultado = new OperacionesAritmeticas();
         resultado.aniadirResultado(" " + funcion + "", res);
+        return resultado;
+    }
+
+    public IResultadoOperacion numero(String expresion) {
+
+        String respuesta = expresion.replaceAll("([(]|[)])", "").trim();
+
+        OperacionesAritmeticas resultado = new OperacionesAritmeticas();
+        resultado.aniadirResultado(" menor ", "" + respuesta);
         return resultado;
     }
 
@@ -588,6 +594,8 @@ public class Interprete {
                 return createDefun(expresion);
             case 15:
                 return defun(expresion);
+            case 16:
+                return numero(expresion);
             default:
 
                 IResultadoOperacion resultadoError = new IResultadoOperacion() {
