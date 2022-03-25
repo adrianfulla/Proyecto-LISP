@@ -75,7 +75,7 @@ public class SintaxScanner {
         if(evaluate("[(]defun (.*?)[ ]([(].*[)])[)]", expresion)){
             System.out.println(14);
             return 14;
-        } else if(evaluate("[(]cond [(]([(].*?[)])[)]+", expresion)){
+        } else if(evaluate("[(]cond [(]([(].*?[)])+[)]+", expresion)){
             System.out.println(12);
             return 12;
         } else if (evaluate("^[(][ ]*[+][ ]+([a-z]+|-?[0-9]+)([ ]+([a-z]+|-?[0-9]+)[ ]*)*[)]$", expresion)) {
@@ -114,7 +114,7 @@ public class SintaxScanner {
         } else if (evaluate("[(](?:[\\/]|[\\*]|[\\+]|[\\-]).*([(](?:[\\/]|[\\*]|[\\+]|[\\-]).*?[)]).*[)]", expresion)){
             System.out.println(13);
             return 13;
-        } else if(evaluate("[(](.*?)[ ]([(].*[)])", expresion)){
+        } else if(evaluate("(?:[(](.*?)[ ]([(]*.*[)]*)[)])", expresion)){
             System.out.println(15);
             return 15;
         }else if(evaluate("([(][ ]*-?[0-9]+[ ]*[)]|[ ]*[0-9]+[ ]*)", expresion)){

@@ -381,13 +381,14 @@ public class Interprete {
                 while (matcher.find()){
                     match = matcher.group(0);
                     adentro = matcher.group(1);
-                    System.out.println(match+"/ " +adentro);
+                    System.out.println(match+"-- " +adentro);
                 }
             } else {
                 adentro = match.replace(adentro, res);
             }
             res = Operate(adentro).getResult();
-            System.out.println(res);
+            System.out.println(match+"-- " +adentro);
+            System.out.println(res+"ala");
             i++;
         }
 
@@ -439,7 +440,7 @@ public class Interprete {
      * @return Resultado operacion
      */
     public IResultadoOperacion cond(String expresion){
-        Pattern pattern = Pattern.compile("[(]cond [(]([(].*?[)])[)]+", Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile("[(]cond [(]([(].*?[)]+)[)]+", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
 
         String adentro = null;
@@ -458,20 +459,25 @@ public class Interprete {
         }
 
         for(int i = 0; i<matches.size();i++){
+            System.out.println(matches.get(i));
             if(pExito){
-                if(!(t.equals(matches.get(i).charAt(0)))) {
+                if(!(t.equals(matches.get(i).charAt(1)))) {
                     res = Operate(matches.get(i)).getResult();
                 }
             }
             else {
                 if(Operate(matches.get(i)).getEvaluacion()){
                     pExito = true;
+                    System.out.println("if");
                 }
-                else if(t.equals(matches.get(i).charAt(0))){
-                    res = Operate(matches.get(i).substring(1)).getResult();
+                else if(t.equals(matches.get(i).charAt(1))){
+                    System.out.println(matches.get(i));
+                    res = Operate(matches.get(i).substring(2)).getResult();
+                    System.out.println("else");
                 }
                 else {
                     res = "fallido";
+                    System.out.println("nel");
                 }
             }
         }
@@ -536,7 +542,9 @@ public class Interprete {
     }
 
     public IResultadoOperacion defun(String expresion){
-        Pattern pattern = Pattern.compile("[(](.*?)[ ]([(].*[)])[)]", Pattern.CASE_INSENSITIVE);
+        System.out.println("entro a defun");
+        System.out.println(expresion);
+        Pattern pattern = Pattern.compile("(?:[(](.*?)[ ]([(]*.*[)]*)[)])", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
 
         //Variables requeridas
@@ -547,22 +555,29 @@ public class Interprete {
 
         //Obtener la funcion y el parametro
         while (matcher.find()) {
+
             funcion = matcher.group(1).trim();
             paramv = matcher.group(2).trim();
+
         }
+
+        System.out.println(funcion + "/" + funciones.toString());
         if(funciones.containsKey(funcion)) {
+
             pattern = Pattern.compile("([(]cond [(][(].*[)][)]|[(].*?[)])", Pattern.CASE_INSENSITIVE);
             matcher = pattern.matcher(funciones.get(funcion));
+            System.out.println(funciones.get(funcion));
             String paramk = "";
             ArrayList<String> matches = new ArrayList<String>();
 
             while (matcher.find()) {
                 matches.add(matcher.group());
+
             }
             for(int i = 0; i<matches.size();i++){
                 if(fCorre){
                     res = Operate(matches.get(i)).getResult();
-                    System.out.println(res);
+                    System.out.println(res+ "k");
                 }
                 else {
                     paramk = matches.get(i).replaceAll("([(]|[)])", "").trim();
@@ -574,7 +589,7 @@ public class Interprete {
             }
         }else
             res = "Funcion no existente";
-            System.out.println(res);
+            System.out.println(res + ".");
 
         OperacionesAritmeticas resultado = new OperacionesAritmeticas();
         resultado.aniadirResultado(" " + funcion + "", res);
@@ -583,7 +598,7 @@ public class Interprete {
 
     public IResultadoOperacion numero(String expresion) {
 
-        String respuesta = expresion.replaceAll("([(]|[)])", "").trim();
+        String respuesta = expresion.replaceAll("([(]|[)])", "");
 
         OperacionesAritmeticas resultado = new OperacionesAritmeticas();
         resultado.aniadirResultado(" menor ", "" + respuesta);

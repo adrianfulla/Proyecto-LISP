@@ -93,7 +93,8 @@ class InterpreteTest {
     @Test
     void mayor() {
         Interprete t = new Interprete();
-        assertEquals("El resultado de la operacion  menor  es: EL valor 2 es mayor a el valor 1", t.mayor("(> 1 2)").perzonalizarOperacion());
+        t.setq("setq n 1");
+        assertEquals("El resultado de la operacion  menor  es: EL valor 2 es mayor a el valor 1", t.mayor("(> n 2)").perzonalizarOperacion());
     }
     /**
      * JUnit de prueba atom
@@ -110,7 +111,7 @@ class InterpreteTest {
     @Test
     void condTest() {
         Interprete t = new Interprete();
-        assertEquals("El resultado de la operacion  cond  es: 1" , t.cond("(cond ((< 1 2) (1) t(+ 1 2))").perzonalizarOperacion());
+        assertEquals("El resultado de la operacion  cond  es: 1" , t.cond("(cond ((< 1 2) (1) (t(+ 1 2)))").perzonalizarOperacion());
     }
 
     /**
@@ -119,7 +120,8 @@ class InterpreteTest {
     @Test
     void equalsTest() {
         Interprete t = new Interprete();
-        assertEquals("El resultado de la operacion  menor  es: EL valor list 1 2 3 es igual al valor list 1 2 3" , t.equals("(equals 1 2)").perzonalizarOperacion());
+        t.setq("setq n 1");
+        assertEquals("El resultado de la operacion  menor  es: EL valor list 1 2 3 es igual al valor list 1 2 3" , t.equals("(equal n 2)").perzonalizarOperacion());
     }
 
     /**
@@ -128,7 +130,7 @@ class InterpreteTest {
     @Test
     void operacionCombinadaTest() {
         Interprete t = new Interprete();
-        t.Operate("(defun factorial (n) (cond ((equal n 1) (1) t(* n 2))))");
+        t.Operate("(defun factorial (n) (cond ((< n 1) (1) (t(* n 2))))");
         assertEquals("El resultado de la operacion  Operacion Combinada  es: 72" , t.combinada("(* 2 (factorial (1)))").perzonalizarOperacion());
     }
 
