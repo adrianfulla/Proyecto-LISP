@@ -290,19 +290,32 @@ public class Interprete {
      * @return resultado operacion
      */
     public IResultadoOperacion menor(String expresion){
-        Pattern pattern = Pattern.compile("([a-z]+|-?[0-9]+)", Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile("([a-z]+)", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
+        Pattern patternNum = Pattern.compile("(-?[0-9]+)", Pattern.CASE_INSENSITIVE);
+        Matcher matcherNum = patternNum.matcher(expresion);
         int valor1 = 0;
         int valor2 = 0;
         int contador = 0;
         String respuesta = "";
+        String variable = "";
 
         while (matcher.find()){
+            variable = matcher.group().trim();
             contador++;
             if(contador == 1){
-                valor1 = Integer.parseInt(matcher.group().trim());
+                valor1 = myVars.get(variable);
             }else if (contador == 2){
-                valor2 = Integer.parseInt(matcher.group().trim());
+                valor2 = myVars.get(variable);
+            }
+        }
+
+        while (matcherNum.find()){
+            contador++;
+            if(contador == 1){
+                valor1 = Integer.parseInt(matcherNum.group().trim());
+            }else if (contador == 2){
+                valor2 = Integer.parseInt(matcherNum.group().trim());
             }
         }
         boolean evaluacion;
@@ -325,19 +338,32 @@ public class Interprete {
      * @return resultado operacion
      */
     public IResultadoOperacion mayor(String expresion){
-        Pattern pattern = Pattern.compile("([a-z]+|-?[0-9]+)", Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile("([a-z]+)", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
+        Pattern patternNum = Pattern.compile("(-?[0-9]+)", Pattern.CASE_INSENSITIVE);
+        Matcher matcherNum = patternNum.matcher(expresion);
         int valor1 = 0;
         int valor2 = 0;
         int contador = 0;
         String respuesta = "";
+        String variable = "";
 
         while (matcher.find()){
             contador++;
+            variable = matcher.group().trim();
             if(contador == 1){
-                valor1 = Integer.parseInt(matcher.group().trim());
+                valor1 = myVars.get(variable);
             }else if (contador == 2){
-                valor2 = Integer.parseInt(matcher.group().trim());
+                valor2 = myVars.get(variable);
+            }
+        }
+
+        while (matcherNum.find()){
+            contador++;
+            if(contador == 1){
+                valor1 = Integer.parseInt(matcherNum.group().trim());
+            }else if (contador == 2){
+                valor2 = Integer.parseInt(matcherNum.group().trim());
             }
         }
         boolean evaluacion;
@@ -496,11 +522,23 @@ public class Interprete {
     public IResultadoOperacion equals(String expresion){
         Pattern pattern = Pattern.compile("([\"]\\w+[\"]|-?[0-9]+|list( \\w+)+)", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
+        Pattern patternPar = Pattern.compile("([ ][a-z]+)", Pattern.CASE_INSENSITIVE);
+        Matcher matcherPar = patternPar.matcher(expresion);
         String valor1 = "";
         String valor2 = "";
         int contador = 0;
         String respuesta = "";
+        String variable = "";
 
+        while (matcherPar.find()){
+            contador++;
+            variable = matcherPar.group().trim();
+            if(contador == 1){
+                valor1 = String.valueOf(myVars.get(variable));
+            }else if (contador == 2){
+                valor2 = String.valueOf(myVars.get(variable));
+            }
+        }
 
 
         while (matcher.find()){
@@ -511,6 +549,7 @@ public class Interprete {
                 valor2 = matcher.group().trim();
             }
         }
+
         boolean evaluacion;
         if(valor1.equals(valor2)){
             respuesta = "EL valor "+ valor1 + " es igual al valor " + valor2;
@@ -521,7 +560,7 @@ public class Interprete {
         }
 
         OperacionesAritmeticas resultado = new OperacionesAritmeticas();
-        resultado.aniadirResultado(" menor ", "" + respuesta, evaluacion);
+        resultado.aniadirResultado(" equal ", "" + respuesta, evaluacion);
         return resultado;
     }
 

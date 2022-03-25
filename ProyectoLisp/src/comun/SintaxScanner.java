@@ -108,7 +108,7 @@ public class SintaxScanner {
         } else if (evaluate("^[(][ ]*atom[ ](['].|-?[0-9]+|['][(]*.*[)]*[)]*)[ ]*[)]$", expresion)) {
             System.out.println(8);
             return 8;
-        } else if (evaluate("^[(][ ]*equal[ ](.|-?[0-9]+|[(]*.*[)]*[)]*)[ ]*[)]$", expresion)){
+        } else if (evaluate("^[(][ ]*(?:equal|[=])[ ](.|-?[0-9]+|[(]*.*[)]*[)]*)[ ]*[)]$", expresion)){
             System.out.println(11);
             return 11;
         } else if (evaluate("[(](?:[\\/]|[\\*]|[\\+]|[\\-]).*([(](?:[\\/]|[\\*]|[\\+]|[\\-]).*?[)]).*[)]", expresion)){

@@ -120,8 +120,9 @@ class InterpreteTest {
     @Test
     void equalsTest() {
         Interprete t = new Interprete();
-        t.setq("setq n 1");
-        assertEquals("El resultado de la operacion  menor  es: EL valor list 1 2 3 es igual al valor list 1 2 3" , t.equals("(equal n 2)").perzonalizarOperacion());
+        t.setq("(setq n 1)");
+        t.setq("(setq a 2)");
+        assertEquals("El resultado de la operacion  equal  es: EL valor 2 es diferente al valor 1" , t.equals("(= n a)").perzonalizarOperacion());
     }
 
     /**
