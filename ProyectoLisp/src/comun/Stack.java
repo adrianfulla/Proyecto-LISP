@@ -3,9 +3,14 @@ package comun;
 import java.util.*;
 
 /**
- * Stack
+ * Clase que crea un Stack con sus ADT
+ *
  * @param <T>
- * @author Renatto Guzmán
+ *
+ * @author Diego Alexander Hernández Silvestre
+ * @author Renatto Esteban Guzman Sosa
+ * @author Adrian Fulladolsa Palma
+ * @author David Jonathan Aragon Vasquez
  */
 
 public class Stack<T> {

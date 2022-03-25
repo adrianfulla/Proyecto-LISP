@@ -5,6 +5,15 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Clase de Tests de los metodos del interprete
+ *
+ * @author Diego Alexander Hernández Silvestre
+ * @author Renatto Esteban Guzman Sosa
+ * @author Adrian Fulladolsa Palma
+ * @author David Jonathan Aragon Vasquez
+ */
+
 class InterpreteTest {
 
     @Test
@@ -50,11 +59,11 @@ class InterpreteTest {
         Interprete t = new Interprete();
         assertEquals("El resultado de la operacion  quote  es: ( hola)" , t.quote("(quote( hola))").perzonalizarOperacion());
     }
-
-    @Test
     /**
      * JUnit de prueba setq
      */
+    @Test
+
     void setqTest() {
         Interprete t = new Interprete();
         assertEquals("Variable: b asignada con valor: 2" , t.setq("(setq a 1 b 2)").perzonalizarOperacion());
@@ -69,12 +78,18 @@ class InterpreteTest {
         assertEquals("El resultado de la operacion  list  es: ( a 1 b 2 )" , t.list("(list 'a '1 'b '2)").perzonalizarOperacion());
     }
 
+    /**
+     * JUnit de prueba menor
+     */
     @Test
     void menor() {
         Interprete t = new Interprete();
         assertEquals("El resultado de la operacion  menor  es: EL valor 1 es menor a el valor 2" , t.menor("(< 1 2)").perzonalizarOperacion());
     }
 
+    /**
+     * JUnit de prueba mayor
+     */
     @Test
     void mayor() {
         Interprete t = new Interprete();
@@ -89,18 +104,27 @@ class InterpreteTest {
         assertEquals("El resultado de la operacion  atom  es: NIL" , t.atom("(atom '(1 2))").perzonalizarOperacion());
     }
 
+    /**
+     * JUnit de prueba cond
+     */
     @Test
     void condTest() {
         Interprete t = new Interprete();
         assertEquals("El resultado de la operacion  cond  es: 1" , t.cond("(cond ((< 1 2) (1) t(+ 1 2))").perzonalizarOperacion());
     }
 
+    /**
+     * JUnit de prueba equals
+     */
     @Test
     void equalsTest() {
         Interprete t = new Interprete();
         assertEquals("El resultado de la operacion  menor  es: EL valor list 1 2 3 es igual al valor list 1 2 3" , t.equals("(equals 1 2)").perzonalizarOperacion());
     }
 
+    /**
+     * JUnit de prueba combinada
+     */
     @Test
     void operacionCombinadaTest() {
         Interprete t = new Interprete();
