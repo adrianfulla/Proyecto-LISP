@@ -24,20 +24,22 @@ public class Interprete {
     Stack<String> pila = new Stack<>();
 
     SintaxScanner s = new SintaxScanner();
+
     /**
      * Constructor del interprete
      */
-    public Interprete(){
+    public Interprete() {
         myVars = new HashMap<String, Integer>();
-        funciones = new HashMap<String,String>();
+        funciones = new HashMap<String, String>();
     }
 
     /**
      * Operación suma sencilla
+     *
      * @param expresion Programa a evaluar.
      * @return Resultado operacion
      */
-    public IResultadoOperacion suma(String expresion){
+    public IResultadoOperacion suma(String expresion) {
         Pattern pattern = Pattern.compile("([a-z]+)", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
         Pattern patternNum = Pattern.compile("(-?[0-9]+)", Pattern.CASE_INSENSITIVE);
@@ -45,12 +47,12 @@ public class Interprete {
         int total = 0;
         String variable = "";
 
-        while (matcher.find()){
+        while (matcher.find()) {
             variable = matcher.group().trim();
             total += myVars.get(variable);
         }
 
-        while (matcherNum.find()){
+        while (matcherNum.find()) {
             total += Integer.parseInt(matcherNum.group().trim());
         }
 
@@ -61,10 +63,11 @@ public class Interprete {
 
     /**
      * Operación resta sencilla
+     *
      * @param expresion Programa a evaluar.
      * @return Resultado operacion
      */
-    public IResultadoOperacion resta(String expresion){
+    public IResultadoOperacion resta(String expresion) {
         Pattern pattern = Pattern.compile("([a-z]+)", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
         Pattern patternNum = Pattern.compile("(-?[0-9]+)", Pattern.CASE_INSENSITIVE);
@@ -72,9 +75,9 @@ public class Interprete {
         String variable = "";
         int total = 0;
         boolean ingreso = true;
-        while (matcher.find()){
+        while (matcher.find()) {
             variable = matcher.group().trim();
-            if (ingreso){
+            if (ingreso) {
                 total = myVars.get(variable);
                 ingreso = false;
             } else {
@@ -82,8 +85,8 @@ public class Interprete {
             }
         }
 
-        while (matcherNum.find()){
-            if (ingreso){
+        while (matcherNum.find()) {
+            if (ingreso) {
                 total = Integer.parseInt(matcherNum.group().trim());
                 ingreso = false;
             } else {
@@ -98,10 +101,11 @@ public class Interprete {
 
     /**
      * Operación multiplicacion sencilla
+     *
      * @param expresion Programa a evaluar.
      * @return Resultado operacion
      */
-    public IResultadoOperacion multiplicacion(String expresion){
+    public IResultadoOperacion multiplicacion(String expresion) {
         Pattern pattern = Pattern.compile("([a-z]+)", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
         Pattern patternNum = Pattern.compile("(-?[0-9]+)", Pattern.CASE_INSENSITIVE);
@@ -110,22 +114,22 @@ public class Interprete {
         boolean ingreso = true;
         String variable = "";
 
-        while (matcher.find()){
+        while (matcher.find()) {
             variable = matcher.group().trim();
-            if (ingreso){
+            if (ingreso) {
                 total = myVars.get(variable);
                 ingreso = false;
             } else {
-                total = myVars.get(variable)*total;
+                total = myVars.get(variable) * total;
             }
         }
 
-        while (matcherNum.find()){
-            if (ingreso){
+        while (matcherNum.find()) {
+            if (ingreso) {
                 total = Integer.parseInt(matcherNum.group().trim());
                 ingreso = false;
             } else {
-                total = Integer.parseInt(matcherNum.group().trim())*total;
+                total = Integer.parseInt(matcherNum.group().trim()) * total;
             }
         }
 
@@ -136,10 +140,11 @@ public class Interprete {
 
     /**
      * Operación division sencilla
+     *
      * @param expresion Programa a evaluar.
      * @return Resultado operacion
      */
-    public IResultadoOperacion division(String expresion){
+    public IResultadoOperacion division(String expresion) {
         Pattern pattern = Pattern.compile("([a-z]+)", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
         Pattern patternNum = Pattern.compile("(-?[0-9]+)", Pattern.CASE_INSENSITIVE);
@@ -147,23 +152,21 @@ public class Interprete {
         int total = 0;
         String variable = "";
         boolean ingreso = true;
-        while (matcher.find()){
+        while (matcher.find()) {
             variable = matcher.group().trim();
-            if (ingreso){
+            if (ingreso) {
                 total = myVars.get(variable);
                 ingreso = false;
-            }
-            else {
+            } else {
                 total = total / myVars.get(variable);
             }
         }
-        while (matcherNum.find()){
-            if (ingreso){
+        while (matcherNum.find()) {
+            if (ingreso) {
                 total = Integer.parseInt(matcherNum.group().trim());
                 ingreso = false;
-            }
-            else {
-                total = total/Integer.parseInt(matcherNum.group().trim());
+            } else {
+                total = total / Integer.parseInt(matcherNum.group().trim());
             }
         }
 
@@ -174,10 +177,11 @@ public class Interprete {
 
     /**
      * Operación quote
+     *
      * @param expresion Programa a evaluar.
      * @return Resultado operacion
      */
-    public IResultadoOperacion quote(String expresion){
+    public IResultadoOperacion quote(String expresion) {
         Pattern pattern = Pattern.compile("[(][ ]*('|quote)([(].*[)])[ ]*[)]", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
         String texto = "";
@@ -191,6 +195,7 @@ public class Interprete {
 
     /**
      * Operación setq
+     *
      * @param expresion Programa a evaluar.
      * @return Resultado operacion
      */
@@ -203,7 +208,7 @@ public class Interprete {
         ArrayList<String> varNames = new ArrayList();
         while (matcher.find()) {
             varName = matcher.group().trim();
-            if (!varName.equals("setq")){
+            if (!varName.equals("setq")) {
                 varNames.add(varName);
             }
         }
@@ -215,9 +220,9 @@ public class Interprete {
             varValues.add(varValue);
         }
 
-        if (varNames.size()==varValues.size()){
-            for (int i=0;i<varNames.size(); i++){
-                myVars.put(varNames.get(i),varValues.get(i));
+        if (varNames.size() == varValues.size()) {
+            for (int i = 0; i < varNames.size(); i++) {
+                myVars.put(varNames.get(i), varValues.get(i));
             }
         }
         System.out.println(myVars.toString());
@@ -254,9 +259,7 @@ public class Interprete {
             public boolean getEvaluacion() {
                 return false;
             }
-            }
-
-            ;
+        };
 
         assigmentResult.aniadirResultado(varName, varValue.toString());
 
@@ -266,18 +269,19 @@ public class Interprete {
 
     /**
      * Operación list
+     *
      * @param expresion Programa a evaluar.
      * @return Resultado operacion
      */
-    public IResultadoOperacion list(String expresion){
+    public IResultadoOperacion list(String expresion) {
         Pattern pattern = Pattern.compile("([']([a-z]+|-?[0-9]+)|[']([(]([a-z]|[a-z][ ]|-?[0-9]+|-?[0-9]+[ ])*[)]))", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
         String respuesta = "";
         String[] util;
 
-        while (matcher.find()){
+        while (matcher.find()) {
             util = matcher.group().split("'");
-            respuesta = respuesta +" "+ util[1];
+            respuesta = respuesta + " " + util[1];
         }
         OperacionesAritmeticas resultado = new OperacionesAritmeticas();
         resultado.aniadirResultado(" list ", "(" + respuesta + " )");
@@ -286,10 +290,11 @@ public class Interprete {
 
     /**
      * Obtiene la menor expresion
+     *
      * @param expresion Programa a evaluar.
      * @return resultado operacion
      */
-    public IResultadoOperacion menor(String expresion){
+    public IResultadoOperacion menor(String expresion) {
         Pattern pattern = Pattern.compile("([a-z]+)", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
         Pattern patternNum = Pattern.compile("(-?[0-9]+)", Pattern.CASE_INSENSITIVE);
@@ -300,32 +305,32 @@ public class Interprete {
         String respuesta = "";
         String variable = "";
 
-        while (matcher.find()){
+        while (matcher.find()) {
             variable = matcher.group().trim();
             contador++;
-            if(contador == 1){
+            if (contador == 1) {
                 valor1 = myVars.get(variable);
-            }else if (contador == 2){
+            } else if (contador == 2) {
                 valor2 = myVars.get(variable);
             }
         }
 
-        while (matcherNum.find()){
+        while (matcherNum.find()) {
             contador++;
-            if(contador == 1){
+            if (contador == 1) {
                 valor1 = Integer.parseInt(matcherNum.group().trim());
-            }else if (contador == 2){
+            } else if (contador == 2) {
                 valor2 = Integer.parseInt(matcherNum.group().trim());
             }
         }
         boolean evaluacion;
-        if(valor1 < valor2){
-            respuesta = "EL valor "+ valor1 + " es menor a el valor " + valor2;
+        if (valor1 < valor2) {
+            respuesta = "EL valor " + valor1 + " es menor a el valor " + valor2;
             evaluacion = true;
-        }else {
-            respuesta = "EL valor "+ valor2 + " es menor a el valor " + valor1;
+        } else {
+            respuesta = "EL valor " + valor2 + " es menor a el valor " + valor1;
             evaluacion = false;
-            }
+        }
 
         OperacionesAritmeticas resultado = new OperacionesAritmeticas();
         resultado.aniadirResultado(" menor ", "" + respuesta, evaluacion);
@@ -334,10 +339,11 @@ public class Interprete {
 
     /**
      * Obtiene la mayor expresion
+     *
      * @param expresion Programa a evaluar.
      * @return resultado operacion
      */
-    public IResultadoOperacion mayor(String expresion){
+    public IResultadoOperacion mayor(String expresion) {
         Pattern pattern = Pattern.compile("([a-z]+)", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
         Pattern patternNum = Pattern.compile("(-?[0-9]+)", Pattern.CASE_INSENSITIVE);
@@ -348,30 +354,32 @@ public class Interprete {
         String respuesta = "";
         String variable = "";
 
-        while (matcher.find()){
+        while (matcher.find()) {
             contador++;
             variable = matcher.group().trim();
-            if(contador == 1){
+            if (contador == 1) {
                 valor1 = myVars.get(variable);
-            }else if (contador == 2){
+            } else if (contador == 2) {
                 valor2 = myVars.get(variable);
             }
         }
 
-        while (matcherNum.find()){
+        while (matcherNum.find()) {
             contador++;
-            if(contador == 1){
+            if (contador == 1) {
                 valor1 = Integer.parseInt(matcherNum.group().trim());
-            }else if (contador == 2){
+            } else if (contador == 2) {
                 valor2 = Integer.parseInt(matcherNum.group().trim());
             }
         }
         boolean evaluacion;
-        if(valor1 > valor2){
-            respuesta = "EL valor "+ valor1 + " es mayor a el valor " + valor2;
+        if (valor1 > valor2) {
+            respuesta = "EL valor " + valor1 + " es mayor a el valor " + valor2;
             evaluacion = true;
-        }else {respuesta = "EL valor "+ valor2 + " es mayor a el valor " + valor1;
-            evaluacion = false;}
+        } else {
+            respuesta = "EL valor " + valor2 + " es mayor a el valor " + valor1;
+            evaluacion = false;
+        }
 
         OperacionesAritmeticas resultado = new OperacionesAritmeticas();
         resultado.aniadirResultado(" menor ", "" + respuesta, evaluacion);
@@ -381,16 +389,18 @@ public class Interprete {
 
     /**
      * Realiza operaciones combinadas
+     *
      * @param expresion Programa a evaluar.
      * @return Resultado operacion
      */
-    public IResultadoOperacion combinada(String expresion){
+    public IResultadoOperacion combinada(String expresion) {
         int v = s.veces(expresion);
+        System.out.println(expresion + " comb");
         Pattern pattern = Pattern.compile("[(](?:[\\/]|[\\*]|[\\+]|[\\-]|.*?).*([(](?:[\\/]|[\\*]|[\\+]|[\\-]|.*?).*?[)]).*[)]", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
         String match = "";
         String adentro = "";
-        while (matcher.find()){
+        while (matcher.find()) {
             match = matcher.group(0);
             adentro = matcher.group(1);
         }
@@ -399,22 +409,28 @@ public class Interprete {
         int i = 0;
 
         res = Operate(adentro).getResult();
-        while(i < v-1){// 0 1 2
-            if(i < v-2){// 0 1
-                String temp = match.replace(adentro,res);
-                System.out.println(match+"/ " +temp +"/ " +adentro +"/ " +res);
+        while (i < v - 1) {// 0 1 2
+            System.out.println(i + "/" + v);
+            if (i < v - 2) {// 0 1
+                System.out.println("if comb");
+                String temp = match.replace(adentro, res);
+                System.out.println(match + "/ " + temp + "/ " + adentro + "/ " + res);
                 matcher = pattern.matcher(temp);
-                while (matcher.find()){
+                System.out.println(temp);
+                while (matcher.find()) {
+                    System.out.println("patron encontrado");
                     match = matcher.group(0);
+                    System.out.println(match);
                     adentro = matcher.group(1);
-                    System.out.println(match+"-- " +adentro);
+                    System.out.println(adentro);
+
                 }
             } else {
                 adentro = match.replace(adentro, res);
+                System.out.println("else comb");
             }
             res = Operate(adentro).getResult();
-            System.out.println(match+"-- " +adentro);
-            System.out.println(res+"ala");
+            System.out.println(res + "ala");
             i++;
         }
 
@@ -425,32 +441,33 @@ public class Interprete {
 
     /**
      * Operación atom
+     *
      * @param expresion Programa a evaluar.
      * @return Resultado operacion
      */
-    public IResultadoOperacion atom(String expresion){
+    public IResultadoOperacion atom(String expresion) {
         Pattern pattern = Pattern.compile("^[(][ ]*atom[ ](['].|-?[0-9]+|['][(]*.*[)]*[)]*)[ ]*[)]$", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
         String[] texto = null;
         int abierto = 0;
         int cerrado = 0;
         String respuesta = "";
-        while (matcher.find()){
+        while (matcher.find()) {
             texto = matcher.group(1).trim().split("");
         }
-        for (int i=0; i<texto.length; i++){
-            if (texto[i].equals("(")){
+        for (int i = 0; i < texto.length; i++) {
+            if (texto[i].equals("(")) {
                 abierto += 1;
             }
             if (texto[i].equals(")")) {
                 cerrado += 1;
             }
         }
-        for (int i=0; i<texto.length; i++){
-            if (texto[i].equals("'") && texto[i+1].equals("(") && abierto==cerrado){
+        for (int i = 0; i < texto.length; i++) {
+            if (texto[i].equals("'") && texto[i + 1].equals("(") && abierto == cerrado) {
                 respuesta = "NIL";
             }
-            if (abierto==0 && cerrado==0){
+            if (abierto == 0 && cerrado == 0) {
                 respuesta = "T";
             }
         }
@@ -459,14 +476,15 @@ public class Interprete {
         resultado.aniadirResultado(" atom ", "" + respuesta);
         return resultado;
     }
-
+    
     /**
      * Operación cond
      * @param expresion Programa a evaluar.
      * @return Resultado operacion
      */
     public IResultadoOperacion cond(String expresion){
-        Pattern pattern = Pattern.compile("[(]cond [(]([(].*?[)]+)[)]+", Pattern.CASE_INSENSITIVE);
+        System.out.println("Expresion cond " + expresion );
+        Pattern pattern = Pattern.compile("[(]cond [(]([(].*?[)]+)[)][)]+", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
 
         String adentro = null;
@@ -485,21 +503,29 @@ public class Interprete {
         }
 
         for(int i = 0; i<matches.size();i++){
-            System.out.println(matches.get(i));
+            System.out.println(pExito);
             if(pExito){
                 if(!(t.equals(matches.get(i).charAt(1)))) {
+                    System.out.println(matches.get(i));
                     res = Operate(matches.get(i)).getResult();
+                    break;
                 }
             }
             else {
-                if(Operate(matches.get(i)).getEvaluacion()){
+                if(t.equals(matches.get(i).charAt(1))){
+                    System.out.println("else");
+                    System.out.println(matches.get(i));
+                    res = matches.get(i).replaceAll("([(]t)","").trim();
+                    System.out.println(res);
+                    res = res.substring(0,res.length()-1);
+                    System.out.println(res);
+                    res = Operate(res).getResult();
+
+
+                }
+                else if(Operate(matches.get(i)).getEvaluacion()){
                     pExito = true;
                     System.out.println("if");
-                }
-                else if(t.equals(matches.get(i).charAt(1))){
-                    System.out.println(matches.get(i));
-                    res = Operate(matches.get(i).substring(2)).getResult();
-                    System.out.println("else");
                 }
                 else {
                     res = "fallido";
@@ -582,7 +608,7 @@ public class Interprete {
 
     public IResultadoOperacion defun(String expresion){
         System.out.println("entro a defun");
-        System.out.println(expresion);
+        System.out.println("mi expresion " + expresion);
         Pattern pattern = Pattern.compile("(?:[(](.*?)[ ]([(]*.*[)]*)[)])", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
 
@@ -596,16 +622,16 @@ public class Interprete {
         while (matcher.find()) {
 
             funcion = matcher.group(1).trim();
+            System.out.println("esta es la funcion "+ funcion);
             paramv = matcher.group(2).trim();
+            System.out.println("este es el parametro  "+ paramv);
 
         }
-
-        System.out.println(funcion + "/" + funciones.toString());
+        System.out.println(funciones.toString());
         if(funciones.containsKey(funcion)) {
 
-            pattern = Pattern.compile("([(]cond [(][(].*[)][)]|[(].*?[)])", Pattern.CASE_INSENSITIVE);
+            pattern = Pattern.compile("([(]cond [(][(].*?[)]+[)][)]+|[(].*?[)])", Pattern.CASE_INSENSITIVE);
             matcher = pattern.matcher(funciones.get(funcion));
-            System.out.println(funciones.get(funcion));
             String paramk = "";
             ArrayList<String> matches = new ArrayList<String>();
 
@@ -616,7 +642,6 @@ public class Interprete {
             for(int i = 0; i<matches.size();i++){
                 if(fCorre){
                     res = Operate(matches.get(i)).getResult();
-                    System.out.println(res+ "k");
                 }
                 else {
                     paramk = matches.get(i).replaceAll("([(]|[)])", "").trim();
@@ -628,7 +653,6 @@ public class Interprete {
             }
         }else
             res = "Funcion no existente";
-            System.out.println(res + ".");
 
         OperacionesAritmeticas resultado = new OperacionesAritmeticas();
         resultado.aniadirResultado(" " + funcion + "", res);

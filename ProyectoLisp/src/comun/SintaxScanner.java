@@ -73,55 +73,55 @@ public class SintaxScanner {
         int v = s.veces(expresion);
         String a = "[(](([\\/]|[\\*]|[\\+]|[\\-])[ ])*([0-9]+[ ]|[0-9]+[ ]*[)])*[)]";
         if(evaluate("[(]defun (.*?)[ ]([(].*[)])[)]", expresion)){
-            System.out.println(14);
+            System.out.println("14 sintax");
             return 14;
-        } else if(evaluate("[(]cond [(]([(].*?[)])+[)]+", expresion)){
-            System.out.println(12);
+        } else if(evaluate("[(]cond [(]([(].*?[)]+)[)][)]+", expresion)){
+            System.out.println("12 sintax");
             return 12;
         } else if (evaluate("^[(][ ]*[+][ ]+([a-z]+|-?[0-9]+)([ ]+([a-z]+|-?[0-9]+)[ ]*)*[)]$", expresion)) {
-            System.out.println(1);
+            System.out.println("1 sintax");
             return 1;
         } else if (evaluate("^[(][ ]*[-][ ]+([a-z]+|-?[0-9]+)([ ]+([a-z]+|-?[0-9]+)[ ]*)*[)]$", expresion)) {
-            System.out.println(2);
+            System.out.println("2 sintax");
             return 2;
         } else if (evaluate("^[(][ ]*[*][ ]+([a-z]+|-?[0-9]+)([ ]+([a-z]+|-?[0-9]+)[ ]*)*[)]$", expresion)) {
-            System.out.println(3);
+            System.out.println("3 sintax");
             return 3;
         } else if (evaluate("^[(][ ]*[/][ ]+([a-z]+|-?[0-9]+)([ ]+([a-z]+|-?[0-9]+)[ ]*)*[)]$", expresion)) {
-            System.out.println(4);
+            System.out.println("4 sintax");
             return 4;
         } else if (evaluate("^[(][ ]*('|quote)([(].*[)])[ ]*[)]$", expresion)) {
-            System.out.println(5);
+            System.out.println("5 sintax");
             return 5;
         } else if (evaluate("^[(][ ]*setq([ ]+[a-z]+[ ]+-?[0-9]+)*+[ ]*[)]$", expresion)) {
-            System.out.println(6);
+            System.out.println("6 sintax");
             return 6;
         } else if (evaluate("[(][ ]*(list|setq)[ ]*([a-z]|-?[0-9])?[ ]*((['][(]([a-z]+.?|-?[0-9]+.?)+([)].))+|(['][a-z].+|[']-?[0-9].+)[)])", expresion)) {
-            System.out.println(7);
+            System.out.println("7 sintax");
             return 7;
         } else if (evaluate("^[(][ ]*[<][ ]+([a-z]+|-?[0-9]+)([ ]+([a-z]+|-?[0-9]+)[ ]*)*[)]$", expresion)) {
-            System.out.println(9);
+            System.out.println("9 sintax");
             return 9;
         } else if (evaluate("^[(][ ]*[>][ ]+([a-z]+|-?[0-9]+)([ ]+([a-z]+|-?[0-9]+)[ ]*)*[)]$", expresion)) {
-            System.out.println(10);
+            System.out.println("10 sintax");
             return 10;
         } else if (evaluate("^[(][ ]*atom[ ](['].|-?[0-9]+|['][(]*.*[)]*[)]*)[ ]*[)]$", expresion)) {
-            System.out.println(8);
+            System.out.println("8 sintax");
             return 8;
         } else if (evaluate("^[(][ ]*(?:equal|[=])[ ](.|-?[0-9]+|[(]*.*[)]*[)]*)[ ]*[)]$", expresion)){
-            System.out.println(11);
+            System.out.println("11 sintax");
             return 11;
         } else if (evaluate("[(](?:[\\/]|[\\*]|[\\+]|[\\-]).*([(](?:[\\/]|[\\*]|[\\+]|[\\-]).*?[)]).*[)]", expresion)){
-            System.out.println(13);
+            System.out.println("13 sintax");
             return 13;
         } else if(evaluate("(?:[(](.*?)[ ]([(]*.*[)]*)[)])", expresion)){
-            System.out.println(15);
+            System.out.println("15 sintax");
             return 15;
         }else if(evaluate("([(][ ]*-?[0-9]+[ ]*[)]|[ ]*[0-9]+[ ]*)", expresion)){
-            System.out.println(16);
+            System.out.println("16 sintax");
             return 16;
         }else {
-            System.out.println(0);
+            System.out.println("0 sintax");
             return 0;
         }
     }
