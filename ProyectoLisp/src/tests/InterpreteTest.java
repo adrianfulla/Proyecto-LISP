@@ -110,7 +110,7 @@ class InterpreteTest {
     @Test
     void condTest() {
         Interprete t = new Interprete();
-        assertEquals("El resultado de la operacion  cond  es: exitoso" , t.cond("(cond ((< 1 2) (list 'a '1 'b '2) (atom '(1 2))").perzonalizarOperacion());
+        assertEquals("El resultado de la operacion  cond  es: 1" , t.cond("(cond ((< 1 2) (1) t(+ 1 2))").perzonalizarOperacion());
     }
 
     /**
@@ -119,7 +119,7 @@ class InterpreteTest {
     @Test
     void equalsTest() {
         Interprete t = new Interprete();
-        assertEquals("El resultado de la operacion  menor  es: EL valor list 1 2 3 es igual al valor list 1 2 3" , t.equals("(equal (list 1 2 3) (list 1 2 3))").perzonalizarOperacion());
+        assertEquals("El resultado de la operacion  menor  es: EL valor list 1 2 3 es igual al valor list 1 2 3" , t.equals("(equals 1 2)").perzonalizarOperacion());
     }
 
     /**
@@ -129,5 +129,18 @@ class InterpreteTest {
     void operacionCombinadaTest() {
         Interprete t = new Interprete();
         assertEquals("El resultado de la operacion  Operacion Combinada  es: 72" , t.combinada("(+ 2 3 5 (+ 2 1 3 46 (* 1 2 3 4 5 6 (* 2 3 4 5 (/ 2 3 4 5)))) 5 5 )").perzonalizarOperacion());
+    }
+
+    @Test
+    void createDefunTest() {
+        Interprete t = new Interprete();
+        assertEquals("El resultado de la operacion  creacion de funcion  es: exitosa" , t.createDefun("(defun multiply-by-seven (number) (* 7 number))").perzonalizarOperacion());
+    }
+
+    @Test
+    void DefunTest() {
+        Interprete t = new Interprete();
+        t.Operate("(defun factorial (n) (cond ((= n 2) (1) t(+ n 2)))");
+        assertEquals("El resultado de la operacion  multiply-by-seven es: 14" , t.Operate("(factorial (1))").perzonalizarOperacion());
     }
 }
