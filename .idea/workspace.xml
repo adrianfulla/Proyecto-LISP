@@ -5,16 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e21da4d0-075f-4bc5-99e4-8f90605acc89" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/comun/Interprete.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/comun/Interprete.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/comun/SintaxScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/comun/SintaxScanner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/tests/InterpreteTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/tests/InterpreteTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Interprete$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Interprete$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Interprete.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Interprete.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/OperacionesAritmeticas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/OperacionesAritmeticas.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/SintaxScanner.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/SintaxScanner.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/tests/InterpreteTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/tests/InterpreteTest.class" afterDir="false" />
     </list>
+    <list id="6db4660f-670f-42ab-86a1-0e3594c8ac7d" name="Changes by PiCi" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,19 +79,16 @@
       <recent name="tests" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.InterpreteTest.mayor">
-    <configuration name="InterpreteTest.DefunTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.InterpreteTest.equalsTest">
+    <configuration name="DriverProgram" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="comun.DriverProgram" />
       <module name="Proyecto-LISP" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="tests.*" />
+          <option name="PATTERN" value="comun.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="tests" />
-      <option name="MAIN_CLASS_NAME" value="tests.InterpreteTest" />
-      <option name="METHOD_NAME" value="DefunTest" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -161,11 +159,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.InterpreteTest.equalsTest" />
+        <item itemvalue="Application.DriverProgram" />
         <item itemvalue="JUnit.InterpreteTest.mayor" />
         <item itemvalue="JUnit.InterpreteTest.operacionCombinadaTest" />
-        <item itemvalue="JUnit.InterpreteTest.equalsTest" />
         <item itemvalue="JUnit.InterpreteTest.condTest" />
-        <item itemvalue="JUnit.InterpreteTest.DefunTest" />
       </list>
     </recent_temporary>
   </component>
@@ -195,5 +193,12 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="valor2" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
