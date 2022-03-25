@@ -2,6 +2,24 @@ package comun;
 
 import java.util.Scanner;
 
+/**Universidad del Valle de Guatemala
+ * Facultad de Ingeniería
+ * Departamento de Ciencia de la Computación.
+ * Algoritmos y Estructuras de datos.
+ * Sección: 20
+ *
+ * Entrega Final del Proyecto #1
+ *
+ * Entorno: Interprete de Lisp.
+ *
+ * @version 1.0
+ * @author Diego Alexander Hernández Silvestre
+ * @author Renatto Esteban Guzman Sosa
+ * @author Adrian Fulladolsa Palma
+ * @author David Jonathan Aragon Vasquez
+ *
+ */
+
 public class DriverProgram {
     public static void main (String[] args){
         Scanner s = new Scanner(System.in);

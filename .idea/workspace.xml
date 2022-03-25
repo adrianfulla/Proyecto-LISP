@@ -6,16 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="e21da4d0-075f-4bc5-99e4-8f90605acc89" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/comun/DriverProgram.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/comun/DriverProgram.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/comun/IResultadoOperacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/comun/IResultadoOperacion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/comun/Interprete.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/comun/Interprete.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/comun/OperacionesAritmeticas.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/comun/OperacionesAritmeticas.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/comun/SintaxScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/comun/SintaxScanner.java" afterDir="false" />
-
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/IResultadoOperacion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/IResultadoOperacion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Interprete$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Interprete$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Interprete$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Interprete$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Interprete.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Interprete.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/OperacionesAritmeticas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/OperacionesAritmeticas.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/SintaxScanner.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/SintaxScanner.class" afterDir="false" />
-
+      <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/comun/Stack.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/comun/Stack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/tests/InterpreteTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/tests/InterpreteTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/tests/StackTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/tests/StackTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,9 +77,7 @@
       <recent name="tests" />
     </key>
   </component>
-
   <component name="RunManager" selected="JUnit.InterpreteTest.operacionCombinadaTest">
-
     <configuration name="DriverProgram (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="comun.DriverProgram" />
       <module name="Proyecto-LISP" />

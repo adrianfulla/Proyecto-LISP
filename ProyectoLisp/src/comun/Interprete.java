@@ -6,6 +6,15 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
+/**
+ * Clase encargada de operar las expresiones e interpretar las mismas
+ *
+ * @author Diego Alexander Hernández Silvestre
+ * @author Renatto Esteban Guzman Sosa
+ * @author Adrian Fulladolsa Palma
+ * @author David Jonathan Aragon Vasquez
+ */
 public class Interprete {
     private HashMap<String, Integer> myVars;
 
@@ -270,6 +279,11 @@ public class Interprete {
         return resultado;
     }
 
+    /**
+     * Obtiene la menor expresion
+     * @param expresion Programa a evaluar.
+     * @return resultado operacion
+     */
     public IResultadoOperacion menor(String expresion){
         Pattern pattern = Pattern.compile("([a-z]+|-?[0-9]+)", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
@@ -300,6 +314,11 @@ public class Interprete {
         return resultado;
     }
 
+    /**
+     * Obtiene la mayor expresion
+     * @param expresion Programa a evaluar.
+     * @return resultado operacion
+     */
     public IResultadoOperacion mayor(String expresion){
         Pattern pattern = Pattern.compile("([a-z]+|-?[0-9]+)", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
@@ -328,13 +347,12 @@ public class Interprete {
         return resultado;
     }
 
+
     /**
-     * Operación atom
+     * Realiza operaciones combinadas
      * @param expresion Programa a evaluar.
      * @return Resultado operacion
      */
-
-
     public IResultadoOperacion combinada(String expresion){
         int v = s.veces(expresion);
         Pattern pattern = Pattern.compile("[(](?:[\\/]|[\\*]|[\\+]|[\\-]).*([(](?:[\\/]|[\\*]|[\\+]|[\\-]).*?[)]).*[)]", Pattern.CASE_INSENSITIVE);
@@ -370,7 +388,11 @@ public class Interprete {
         return resultado;
     }
 
-
+    /**
+     * Operación atom
+     * @param expresion Programa a evaluar.
+     * @return Resultado operacion
+     */
     public IResultadoOperacion atom(String expresion){
         Pattern pattern = Pattern.compile("^[(][ ]*atom[ ](['].|-?[0-9]+|['][(]*.*[)]*[)]*)[ ]*[)]$", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
@@ -403,6 +425,11 @@ public class Interprete {
         return resultado;
     }
 
+    /**
+     * Operación cond
+     * @param expresion Programa a evaluar.
+     * @return Resultado operacion
+     */
     public IResultadoOperacion cond(String expresion){
         Pattern pattern = Pattern.compile("[(]cond [(]([(].*[)])[)]", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
@@ -436,6 +463,11 @@ public class Interprete {
         return resultado;
     }
 
+    /**
+     * Operacion equals, revisa si los valores son iguales o diferentes.
+     * @param expresion Programa a evaluar
+     * @return Resultado operacion
+     */
     public IResultadoOperacion equals(String expresion){
         Pattern pattern = Pattern.compile("([\"]\\w+[\"]|-?[0-9]+|list( \\w+)+)", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
