@@ -225,7 +225,6 @@ public class Interprete {
                 myVars.put(varNames.get(i), varValues.get(i));
             }
         }
-        System.out.println(myVars.toString());
 
         //Using anonymous Inner class
         IResultadoOperacion assigmentResult = new IResultadoOperacion() {
@@ -395,7 +394,6 @@ public class Interprete {
      */
     public IResultadoOperacion combinada(String expresion) {
         int v = s.veces(expresion);
-        System.out.println(expresion + " comb");
         Pattern pattern = Pattern.compile("[(](?:[\\/]|[\\*]|[\\+]|[\\-]|.*?).*([(](?:[\\/]|[\\*]|[\\+]|[\\-]|.*?).*?[)]).*[)]", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
         String match = "";
@@ -410,27 +408,27 @@ public class Interprete {
 
         res = Operate(adentro).getResult();
         while (i < v - 1) {// 0 1 2
-            System.out.println(i + "/" + v);
+
             if (i < v - 2) {// 0 1
-                System.out.println("if comb");
+
                 String temp = match.replace(adentro, res);
-                System.out.println(match + "/ " + temp + "/ " + adentro + "/ " + res);
+
                 matcher = pattern.matcher(temp);
-                System.out.println(temp);
+
                 while (matcher.find()) {
-                    System.out.println("patron encontrado");
+
                     match = matcher.group(0);
-                    System.out.println(match);
+
                     adentro = matcher.group(1);
-                    System.out.println(adentro);
+
 
                 }
             } else {
                 adentro = match.replace(adentro, res);
-                System.out.println("else comb");
+
             }
             res = Operate(adentro).getResult();
-            System.out.println(res + "ala");
+
             i++;
         }
 
@@ -483,7 +481,7 @@ public class Interprete {
      * @return Resultado operacion
      */
     public IResultadoOperacion cond(String expresion){
-        System.out.println("Expresion cond " + expresion );
+
         Pattern pattern = Pattern.compile("[(]cond [(]([(].*?[)]+)[)][)]+", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
 
@@ -503,33 +501,33 @@ public class Interprete {
         }
 
         for(int i = 0; i<matches.size();i++){
-            System.out.println(pExito);
+
             if(pExito){
                 if(!(t.equals(matches.get(i).charAt(1)))) {
-                    System.out.println(matches.get(i));
+
                     res = Operate(matches.get(i)).getResult();
                     break;
                 }
             }
             else {
                 if(t.equals(matches.get(i).charAt(1))){
-                    System.out.println("else");
-                    System.out.println(matches.get(i));
+
+
                     res = matches.get(i).replaceAll("([(]t)","").trim();
-                    System.out.println(res);
+
                     res = res.substring(0,res.length()-1);
-                    System.out.println(res);
+
                     res = Operate(res).getResult();
 
 
                 }
                 else if(Operate(matches.get(i)).getEvaluacion()){
                     pExito = true;
-                    System.out.println("if");
+
                 }
                 else {
                     res = "fallido";
-                    System.out.println("nel");
+
                 }
             }
         }
@@ -607,8 +605,8 @@ public class Interprete {
     }
 
     public IResultadoOperacion defun(String expresion){
-        System.out.println("entro a defun");
-        System.out.println("mi expresion " + expresion);
+
+
         Pattern pattern = Pattern.compile("(?:[(](.*?)[ ]([(]*.*[)]*)[)])", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
 
@@ -622,12 +620,12 @@ public class Interprete {
         while (matcher.find()) {
 
             funcion = matcher.group(1).trim();
-            System.out.println("esta es la funcion "+ funcion);
+
             paramv = matcher.group(2).trim();
-            System.out.println("este es el parametro  "+ paramv);
+
 
         }
-        System.out.println(funciones.toString());
+
         if(funciones.containsKey(funcion)) {
 
             pattern = Pattern.compile("([(]cond [(][(].*?[)]+[)][)]+|[(].*?[)])", Pattern.CASE_INSENSITIVE);
