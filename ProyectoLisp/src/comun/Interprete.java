@@ -639,6 +639,11 @@ public class Interprete {
         return resultado;
     }
 
+    /**
+     * Operacion createDefun, almacena una funcion dada por el usuario
+     * @param expresion Programa a evaluar
+     * @return Resultado operacion
+     */
     public IResultadoOperacion createDefun(String expresion){
         Pattern pattern = Pattern.compile("[(]defun (.*?)[ ]([(].*[)])[)]", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
@@ -654,7 +659,11 @@ public class Interprete {
         resultado.aniadirResultado(" creacion de funcion ", "exitosa");
         return resultado;
     }
-
+    /**
+     * Operacion Defun, se encarga de ejecutar funciones creadas por el usuario
+     * @param expresion Programa a evaluar
+     * @return Resultado operacion
+     */
     public IResultadoOperacion defun(String expresion){
         Pattern pattern = Pattern.compile("(?:[(](.*?)[ ]([(]*.*[)]*)[)])", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
@@ -702,6 +711,11 @@ public class Interprete {
         return resultado;
     }
 
+    /**
+     * Operacion numero, busca en una expresion un numero dentro de parentesis
+     * @param expresion Programa a evaluar
+     * @return numero fuera de parentesis
+     */
     public IResultadoOperacion numero(String expresion) {
 
         String respuesta = expresion.replaceAll("([(]|[)])", "");

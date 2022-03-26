@@ -5,16 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e21da4d0-075f-4bc5-99e4-8f90605acc89" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/comun/Interprete.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/comun/Interprete.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/comun/SintaxScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/comun/SintaxScanner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/tests/InterpreteTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/tests/InterpreteTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Interprete$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Interprete$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Interprete.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/Interprete.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/SintaxScanner.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/comun/SintaxScanner.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Proyecto-LISP/tests/InterpreteTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Proyecto-LISP/tests/InterpreteTest.class" afterDir="false" />
-    </list>
-    <list id="b18fd5f8-4f8e-4921-87b4-d6fb496a8a15" name="Changes by daher" comment="">
+      <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/comun/DriverProgram.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/comun/DriverProgram.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProyectoLisp/src/comun/Interprete.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoLisp/src/comun/Interprete.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,24 +36,6 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/ProyectoLisp/src/comun/Interprete.java">
-      <ranges>
-        <range start1="22" end1="22" start2="22" end2="23" changelist="b18fd5f8-4f8e-4921-87b4-d6fb496a8a15" />
-        <range start1="23" end1="24" start2="24" end2="24" changelist="b18fd5f8-4f8e-4921-87b4-d6fb496a8a15" />
-        <range start1="33" end1="33" start2="33" end2="34" changelist="b18fd5f8-4f8e-4921-87b4-d6fb496a8a15" />
-        <range start1="493" end1="493" start2="494" end2="495" changelist="e21da4d0-075f-4bc5-99e4-8f90605acc89" />
-        <range start1="518" end1="518" start2="520" end2="567" changelist="e21da4d0-075f-4bc5-99e4-8f90605acc89" />
-        <range start1="520" end1="520" start2="569" end2="570" changelist="e21da4d0-075f-4bc5-99e4-8f90605acc89" />
-        <range start1="522" end1="522" start2="572" end2="573" changelist="e21da4d0-075f-4bc5-99e4-8f90605acc89" />
-        <range start1="607" end1="609" start2="658" end2="658" changelist="e21da4d0-075f-4bc5-99e4-8f90605acc89" />
-        <range start1="624" end1="626" start2="673" end2="673" changelist="e21da4d0-075f-4bc5-99e4-8f90605acc89" />
-        <range start1="637" end1="638" start2="684" end2="684" changelist="e21da4d0-075f-4bc5-99e4-8f90605acc89" />
-        <range start1="646" end1="647" start2="692" end2="692" changelist="e21da4d0-075f-4bc5-99e4-8f90605acc89" />
-        <range start1="675" end1="676" start2="720" end2="720" changelist="e21da4d0-075f-4bc5-99e4-8f90605acc89" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
