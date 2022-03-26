@@ -73,19 +73,14 @@ public class SintaxScanner {
         int v = s.veces(expresion);
         String a = "[(](([\\/]|[\\*]|[\\+]|[\\-])[ ])*([0-9]+[ ]|[0-9]+[ ]*[)])*[)]";
         if(evaluate("[(]defun (.*?)[ ]([(].*[)])[)]", expresion)){
-
             return 14;
         } else if(evaluate("[(]cond [(]([(].*?[)]+)[)][)]+", expresion)){
-
             return 12;
         } else if (evaluate("^[(][ ]*[+][ ]+([a-z]+|-?[0-9]+)([ ]+([a-z]+|-?[0-9]+)[ ]*)*[)]$", expresion)) {
-
             return 1;
         } else if (evaluate("^[(][ ]*[-][ ]+([a-z]+|-?[0-9]+)([ ]+([a-z]+|-?[0-9]+)[ ]*)*[)]$", expresion)) {
-
             return 2;
         } else if (evaluate("^[(][ ]*[*][ ]+([a-z]+|-?[0-9]+)([ ]+([a-z]+|-?[0-9]+)[ ]*)*[)]$", expresion)) {
-
             return 3;
         } else if (evaluate("^[(][ ]*[/][ ]+([a-z]+|-?[0-9]+)([ ]+([a-z]+|-?[0-9]+)[ ]*)*[)]$", expresion)) {
             return 4;
