@@ -145,7 +145,7 @@ class InterpreteTest {
     @Test
     void DefunTest() {
         Interprete t = new Interprete();
-        t.Operate("(defun multiply-by-seven (number) (* 7 number))");
-        assertEquals("El resultado de la operacion  multiply-by-seven es: 14" , t.Operate("(multiply-by-seven (2))").perzonalizarOperacion());
+        t.Operate("(defun factorial (n) (cond ((= n 1) (1) (t(* n (factorial (- n 1)))))))");
+        assertEquals("El resultado de la operacion  factorial es: 120" , t.Operate("(factorial (5))").perzonalizarOperacion());
     }
 }

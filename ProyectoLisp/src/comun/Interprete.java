@@ -20,8 +20,8 @@ import java.util.regex.Pattern;
 public class Interprete {
     private HashMap<String, Integer> myVars;
     private HashMap<String, String> funciones;
+    private Stack<String> pila;
 
-    Stack<String> pila = new Stack<>();
 
     SintaxScanner s = new SintaxScanner();
 
@@ -31,6 +31,7 @@ public class Interprete {
     public Interprete() {
         myVars = new HashMap<String, Integer>();
         funciones = new HashMap<String, String>();
+        pila = new Stack<>();
     }
 
     /**
@@ -491,6 +492,7 @@ public class Interprete {
         }
 
         pattern = Pattern.compile("([(].*?[)]+|t[(].*[)])", Pattern.CASE_INSENSITIVE);
+
         matcher = pattern.matcher(adentro);
         boolean pExito = false;
         String res = null;
@@ -516,10 +518,59 @@ public class Interprete {
                     res = matches.get(i).replaceAll("([(]t)","").trim();
 
                     res = res.substring(0,res.length()-1);
+                    int contParAb = 0; //contador de parentesis abiertos
+                    boolean banderaPosicion = false;
+                    int posicion = 0;
+                    for(int j = 0; j < res.length(); j++){
+                        char c = res.charAt(j);
+
+                        if(c =='('){
+                            contParAb ++;
+                        }
+                        else if(c == ')'){
+                            contParAb --;
+                        }
+                        if (contParAb == 1){
+                               pila.push(String.valueOf(c));
+
+                        }
+                        else if (contParAb == 2){
+                            if(!banderaPosicion){
+                                posicion = j;
+                                banderaPosicion = true;
+                            }
+                        }
+                    }
+
+                    String exp = "";
+                    while(!pila.isEmpty()){
+                        String v = pila.pull();
+                        exp = v + exp;
+                    }
+
+                    Pattern patternS = Pattern.compile("([a-z]+)", Pattern.CASE_INSENSITIVE);
+                    Matcher matcherS = patternS.matcher(exp);
+
+                    ArrayList<String> matchesS = new ArrayList<String>();
+
+                    while (matcherS.find()) {
+                        matchesS.add(matcherS.group());
+                    }
+                    for(int l = 0; l< matchesS.size(); l++){
+                        String varS = matchesS.get(l);
+                        String valS = String.valueOf(myVars.get(varS));
+                        if(valS.length()> 1){
+                            posicion = posicion + (valS.length() - 1);
+                        }
+                        exp = exp.replace(varS,valS);
+                    }
+                    StringBuilder sb = new StringBuilder(exp);
 
                     res = Operate(res).getResult();
+                    sb.insert(posicion, res);
 
 
+                    res = Operate(String.valueOf(sb)).getResult();
                 }
                 else if(Operate(matches.get(i)).getEvaluacion()){
                     pExito = true;
@@ -605,8 +656,6 @@ public class Interprete {
     }
 
     public IResultadoOperacion defun(String expresion){
-
-
         Pattern pattern = Pattern.compile("(?:[(](.*?)[ ]([(]*.*[)]*)[)])", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(expresion);
 
@@ -622,8 +671,6 @@ public class Interprete {
             funcion = matcher.group(1).trim();
 
             paramv = matcher.group(2).trim();
-
-
         }
 
         if(funciones.containsKey(funcion)) {
@@ -635,7 +682,6 @@ public class Interprete {
 
             while (matcher.find()) {
                 matches.add(matcher.group());
-
             }
             for(int i = 0; i<matches.size();i++){
                 if(fCorre){
@@ -644,7 +690,6 @@ public class Interprete {
                 else {
                     paramk = matches.get(i).replaceAll("([(]|[)])", "").trim();
                     int intparamV = Integer.parseInt(Operate(paramv).getResult());
-
                     myVars.put(paramk,intparamV);
                     fCorre = true;
                 }
@@ -673,7 +718,6 @@ public class Interprete {
      */
     public IResultadoOperacion Operate(String expresion){
         int operacion = SintaxScanner.getState(expresion);
-
         switch (operacion){
             case 1:
                 return suma(expresion);
